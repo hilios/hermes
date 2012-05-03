@@ -2,6 +2,8 @@ require 'rubygems'
 require 'bundler/setup'
 require 'sinatra/base'
 
-class HermesFrontendApplication < Sinatra::Base
+module Hermes
+  class Frontend < Sinatra::Base
 
+  end
 end
