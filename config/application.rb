@@ -37,7 +37,7 @@ module Hermes
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
+    config.filter_parameters += [:password, :password_confirmation, :password_salt, :authentication_token]
 
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
@@ -55,5 +55,19 @@ module Hermes
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Generators
+    config.generators do |generator|
+      generator.helper              false
+      generator.stylesheets         false
+      generator.javascripts         false
+      generator.controllers         true
+      generator.test_framework      :rspec, :controller_specs => false,
+                                            :view_specs       => false,
+                                            :helper_specs     => false,
+                                            :routing_specs    => false
+      generator.template_engine     :haml
+      generator.fixture_replacement :factory_girl, :dir => 'spec/support/factories'
+    end
   end
 end
