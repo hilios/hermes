@@ -26,8 +26,10 @@ Spork.prefork do
   CarrierWave.root = Rails.root.join('spec/support/tmp/').to_s
 
   RSpec.configure do |config|
-    # Configure CarrierWave matchers
+    # Include CarrierWave matchers
     config.include CarrierWave::Test::Matchers
+    # Include Mogoid matchers
+    configuration.include Mongoid::Matchers
 
     config.after(:suite) do
       FileUtils.rm_rf(CarrierWave.root) # Erase the uploaded files in tests
