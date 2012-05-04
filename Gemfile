@@ -57,7 +57,6 @@ group :test do
   gem 'spork', '~> 0.9.0.rc'
   gem 'guard-spork'
   gem 'guard-rspec'
-  gem 'guard-cucumber'
   # Pretty printed test output
   # gem 'turn', :require => false
 end
