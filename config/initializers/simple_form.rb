@@ -82,6 +82,33 @@ SimpleForm.setup do |config|
     end
   end
 
+  config.wrappers :inline, :tag => 'span', :class => nil, :error_class => 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :input
+  end
+
+  config.wrappers :inline_hint, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label
+    b.wrapper :tag => 'div', :class => 'controls' do |input|
+      input.use :input
+      input.use :hint,  :wrap_with => { :tag => 'span', :class => 'help-inline' }
+      input.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+    end
+  end
+
+  config.wrappers :nested, :tag => 'div', :class => "control-group", :error_class => 'error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.wrapper :tag => 'div', :class => 'controls', :label_class => '' do |input|
+      input.use :label_input
+      input.use :hint,  :wrap_with => { :tag => 'span', :class => 'help-block' }
+      input.use :error, :wrap_with => { :tag => 'span', :class => 'help-inline' }
+    end
+  end
+
   # Wrappers for forms and inputs using the Twitter Bootstrap toolkit.
   # Check the Bootstrap docs (http://twitter.github.com/bootstrap)
   # to learn about the different styles for forms and inputs,
@@ -138,7 +165,7 @@ SimpleForm.setup do |config|
   config.label_class = 'control-label'
 
   # You can define the class to use on all forms. Default is simple_form.
-  # config.form_class = :simple_form
+  config.form_class = 'form-horizontal'
 
   # You can define which elements should obtain additional classes
   # config.generate_additional_classes_for = [:wrapper, :label, :input]
