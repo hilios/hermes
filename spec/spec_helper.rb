@@ -31,13 +31,22 @@ Spork.prefork do
     # Include Mogoid matchers
     config.include Mongoid::Matchers
 
-    config.after(:suite) do
-      FileUtils.rm_rf(CarrierWave.root) # Erase the uploaded files in tests
+    config.before(:suite) do
+      DatabaseCleaner.orm      = :mongoid
+      DatabaseCleaner.strategy = :truncation
+      DatabaseCleaner.clean_with :truncation
     end
 
-    config.before(:suite) do
-      DatabaseCleaner.clean_with :truncation # Ensure that the test db is clean
-      DatabaseCleaner.strategy = :truncation
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
+
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
+
+    config.after(:suite) do
+      FileUtils.rm_rf(CarrierWave.root) # Erase the uploaded files in tests
     end
 
     # If true, the base class of anonymous controllers will be inferred
