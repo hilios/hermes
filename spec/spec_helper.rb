@@ -29,7 +29,7 @@ Spork.prefork do
     # Include CarrierWave matchers
     config.include CarrierWave::Test::Matchers
     # Include Mogoid matchers
-    configuration.include Mongoid::Matchers
+    config.include Mongoid::Matchers
 
     config.after(:suite) do
       FileUtils.rm_rf(CarrierWave.root) # Erase the uploaded files in tests
