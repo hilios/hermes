@@ -16,7 +16,7 @@
           .container-fluid
             = link_to t(:hermes), root_path, class: :brand
             %nav
-              Nav
+              = render 'layouts/navigation'
       .container-fluid
         .row-fluid
           - if content_for? :sidebar

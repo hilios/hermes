@@ -1,0 +1,5 @@
+%ul.nav
+  %li{:class => activate_if(controller_is? :users)}
+    = link_to users_path do
+      %i.icon-user.icon-white
+      = User.model_name.human.pluralize
