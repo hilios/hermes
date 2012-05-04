@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.3'
 gem 'sqlite3'
 gem 'mongoid'                               # NoSQL database
-gem 'bson_ext'
+gem 'bson_ext'                              # A faster bson encoder
 gem 'unicorn'                               # Unicorn server
 gem 'mongoid-ancestry'                      # Tree structure with materialised path pattern for mongoid
 gem 'haml-rails'                            # HAML for templates
@@ -22,8 +22,10 @@ gem 'carrierwave'                           # Handle uploaded files
 gem 'carrierwave-mongoid',                  # Support for Mongoid
   require: 'carrierwave/mongoid'
 gem 'mini_magick'                           # Image processor
+gem 'rest-client'                           # A REST client
+gem 'paper_trail'                           # Versioning model
 
-gem 'sinatra'                               # Faster access
+gem 'sinatra'                               # Faster access for the frontend
 
 group :assets do
   gem 'less-rails-bootstrap'                # THE Layout
