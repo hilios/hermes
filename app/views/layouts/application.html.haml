@@ -1,0 +1,24 @@
+!!!5
+%html
+  %head
+    %meta{charset: 'utf-8'}
+    %meta{name: 'viewport', content: 'width=device-width, initial-scale=1.0'}
+    - title = '%s'
+    - title = yield :title if content_for? :title
+    %title= title % t(:hermes)
+    = stylesheet_link_tag    'application'
+    = yield :stylesheets
+    = csrf_meta_tags
+  %body
+    %header
+      .navbar.navbar-fixed-top
+        .navbar-inner
+          .container-fluid
+            = link_to t(:hermes), root_path, class: :brand
+            %nav
+              Nav
+      .container-fluid
+        .row-fluid
+          = yield
+    = javascript_include_tag 'application'
+    = yield :javascripts
