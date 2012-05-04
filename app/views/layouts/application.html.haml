@@ -19,6 +19,13 @@
               Nav
       .container-fluid
         .row-fluid
-          = yield
+          - if content_for? :sidebar
+            .span10
+              = yield
+            .span2
+              = yield :sidebar
+          - else
+            .span12
+              = yield
     = javascript_include_tag 'application'
     = yield :javascripts

@@ -4,6 +4,7 @@ describe User do
   describe "collection" do
     it { should have_field(:name).of_type(String) }
     it { should have_field(:role).of_type(String) }
+    it { should have_field(:is_active).of_type(Boolean) }
 
     context "devise" do
       it { should have_field(:email).of_type(String) }

@@ -1,4 +1,4 @@
-%p#notice= notice
+= render 'page_header'
 
 %p
   %b Name:
@@ -6,7 +6,3 @@
 %p
   %b Role:
   = @user.role
-
-= link_to 'Edit', edit_user_path(@user)
-\|
-= link_to 'Back', users_path

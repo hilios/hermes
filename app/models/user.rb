@@ -3,8 +3,9 @@ class User
   # Devise modules
   devise :database_authenticatable, :recoverable, :encryptable, :trackable, :rememberable
   # Collection map
-  field :name, :type => String
-  field :role, :type => String
+  field :name,      :type => String
+  field :role,      :type => String
+  field :is_active, :type => Boolean, :null => false, :default => true
   # Database authenticatable
   field :email,              :type => String, :null => false, :default => ""
   field :encrypted_password, :type => String, :null => false, :default => ""

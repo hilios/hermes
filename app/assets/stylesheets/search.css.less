@@ -1,0 +1,28 @@
+@import "twitter/bootstrap/mixins";
+
+.table {
+  tr.search {
+    input, select {
+      margin: 0;
+    }
+  }
+  thead {
+    tr.search {
+      td, th {
+        #gradient > .vertical(#FFFFFF, #F5F5F5);
+        padding-top: 0;
+      }
+      select {
+        width: auto;
+      }
+    }
+    a {
+      &:link, &:visited {
+        color: #333333;
+      }
+      &:hover, &:active, &:visited:hover {
+        color: #000000
+      }
+    }
+  }
+}
