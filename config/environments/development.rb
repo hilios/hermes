@@ -34,4 +34,9 @@ Hermes::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Serve assets from scoped url
+  config.action_controller.asset_host = lambda { |source, request|
+    "#{request.protocol}#{request.host_with_port}/admin"
+  }
 end
