@@ -272,7 +272,6 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext
-  cancan
   capistrano
   capistrano-unicorn
   capistrano_colors

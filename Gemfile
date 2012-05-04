@@ -12,8 +12,7 @@ gem 'jquery-rails'                          # JavaScript can be easier
 gem 'responders'                            # DRY flash messages and more
 gem 'devise', '2.0.0.rc'                    # User authentication
 gem 'omniauth'                              # Apps authentication (required by devise installation)
-gem 'cancan'                                # Authorization system
-gem 'moulin_rouge'                          # Organize CanCan permissions in many files
+gem 'moulin_rouge'                          # Better organization authorization through CanCan
 gem 'simple_form', '>= 2.0.0'               # Simplificate the forms layouts
 gem 'crummy', '~> 1.5.0'                    # Breadcrumbs
 gem 'kaminari'                              # Pagination
