@@ -35,6 +35,7 @@ Spork.prefork do
 
     config.before(:suite) do
       DatabaseCleaner.clean_with :truncation # Ensure that the test db is clean
+      DatabaseCleaner.strategy = :truncation
     end
 
     # If true, the base class of anonymous controllers will be inferred
