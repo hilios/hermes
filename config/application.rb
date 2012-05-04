@@ -62,11 +62,13 @@ module Hermes
       generator.stylesheets         false
       generator.javascripts         false
       generator.controllers         true
+      generator.template_engine     :haml
+      generator.integration_tool    :rspec
       generator.test_framework      :rspec, :controller_specs => false,
                                             :view_specs       => false,
                                             :helper_specs     => false,
-                                            :routing_specs    => false
-      generator.template_engine     :haml
+                                            :routing_specs    => false,
+                                            :request_specs    => true
       generator.fixture_replacement :factory_girl, :dir => 'spec/support/factories'
     end
   end
