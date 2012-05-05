@@ -2,7 +2,7 @@
 
 = flash_messages
 
-%table.table.table-bordered.table-striped
+%table.table.table-striped
   %thead
     %tr
       %th{width: 220}= User.human_attribute_name :name
@@ -14,8 +14,9 @@
       %tr
         %td= user.name
         %td= user.email
-        %td= user.role
         %td
+          %code= ":#{user.role}"
+        %td{:align => :rigth}
           = link_to user, :class => 'btn btn-mini' do
             %i.icon-eye
             Show

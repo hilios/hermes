@@ -14,4 +14,7 @@ en:
     labels:
       user:
         email: 'E-mail'
+    hints:
+      user:
+        password: Fill in only if you like to change
 
