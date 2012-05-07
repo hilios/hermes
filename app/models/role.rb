@@ -6,7 +6,7 @@ class Role
   end
   
   def to_s
-    name
+    I18n.t('roles.#{name}', :default => name)
   end
   
   def to_sym
