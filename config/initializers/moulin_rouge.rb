@@ -10,3 +10,5 @@ MoulinRouge.configure do |config|
   # The method name that will access the current user information
   config.model_instance = :current_user
 end
+
+MoulinRouge.run!

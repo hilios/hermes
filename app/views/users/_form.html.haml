@@ -4,6 +4,6 @@
   = f.input :email, :disabled => !@user.new_record?
   = f.input :password
   = f.input :password_confirmation
-  = f.input :role
+  = f.input :role, :as => :radio, :collection => Role.all
   .form-actions
     = f.button :submit

@@ -26,6 +26,8 @@ describe User do
   end
 
   describe "validations" do
+    specify { FactoryGirl.build(:user).should be_valid }
+    
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:email) }
     it { should validate_presence_of(:role) }
@@ -36,5 +38,11 @@ describe User do
     it { should_not allow_value("foo@.co").for(:email) }
 
     it { should validate_uniqueness_of(:email).case_insensitive }
+  end
+  
+  describe "#is?" do
+    it "return true if given role matches user role" do
+      
+    end
   end
 end
