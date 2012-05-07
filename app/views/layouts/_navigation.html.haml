@@ -3,3 +3,7 @@
     = link_to users_path do
       %i.icon-user.icon-white
       = User.model_name.human.pluralize
+  %li{:class => activate_if(controller_is? :websites)}
+    = link_to websites_path do
+      %i.icon-user.icon-white
+      = Website.model_name.human.pluralize

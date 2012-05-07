@@ -1,0 +1,27 @@
+= render 'page_header'
+
+%table.table.table-striped#websites
+  %thead
+    %tr
+      %th{width: 220}= Website.human_attribute_name :name
+      %th=             Website.human_attribute_name :domains
+      %th{width: 220}
+  %tbody
+    - @websites.each do |website|
+      %tr{:'data-id' => website.id}
+        %td= website.name
+        %td{:align => :rigth}
+          = link_to website, :class => 'btn btn-mini' do
+            %i.icon-eye
+            Show
+          = link_to edit_website_path(website), :class => 'btn btn-mini btn-primary' do
+            %i.icon-pencil
+            Edit
+          = link_to_destroy website, :class => 'btn btn-mini btn-danger' do
+            %i.icon-trash
+            Destroy
+    - if @websites.empty?
+      %tr
+        %td{:colspan => 4}
+          %i.icon-exclamation-sign
+          Empty result
