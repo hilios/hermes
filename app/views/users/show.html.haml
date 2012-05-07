@@ -1,8 +1,33 @@
 = render 'page_header'
 
-%p
-  %b Name:
-  = @user.name
-%p
-  %b Role:
-  = @user.role
+.hero-unit
+  %h1
+    = @user.name
+    %small
+      = mail_to @user.email
+  %p
+    = @user.role
+    %br
+    = User.human_attribute_name :last_sign_in_at
+    - if @user.last_sign_in_at
+      = time_ago_in_words @user.last_sign_in_at
+    - else
+      %span.label Never
+  %p
+    = link_to edit_user_path(@user), :class => 'btn btn-large btn-primary' do
+      Edit profile
+    = link_to users_path, :class => 'btn btn-large' do
+      %i.icon-arrow-left
+      Back
+
+%fieldset
+  %legend User activity
+  %table.table.table-striped
+    %thead
+      %tr
+        %th When
+        %th Where
+    %tbody
+      %tr
+        %td
+        %td

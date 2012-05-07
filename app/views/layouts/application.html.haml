@@ -17,11 +17,24 @@
             = link_to t(:hermes), root_path, class: :brand
             %nav
               = render 'layouts/navigation'
-              %ul.nav.pull-rigth
+              %ul.nav.pull-right
                 %li.dropdown
-                  = link_to users_path do
+                  %a.dropdown-toggle{Hash['data-toggle', 'dropdown']}
                     = current_user.name
                     %b.caret
+                  %ul.dropdown-menu
+                    %li
+                      = link_to current_user do
+                        %i.icon-user
+                        My profile
+                    %li
+                      = link_to current_user do
+                        %i.icon-asterisk
+                        Update password
+                %li.divider-vertical
+                %li
+                  = link_to destroy_user_session_path, method: :delete do
+                    Sign out
       .container-fluid
         .row-fluid
           - if content_for? :sidebar

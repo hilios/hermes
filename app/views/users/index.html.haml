@@ -2,7 +2,7 @@
 
 = flash_messages
 
-%table.table.table-striped
+%table.table.table-striped#users
   %thead
     %tr
       %th{width: 220}= User.human_attribute_name :name
@@ -11,7 +11,7 @@
       %th{width: 220}
   %tbody
     - @users.each do |user|
-      %tr
+      %tr{:'data-id' => user.id}
         %td= user.name
         %td= user.email
         %td

@@ -41,8 +41,6 @@ describe User do
   end
   
   describe "#is?" do
-    it "return true if given role matches user role" do
-      
-    end
+    it "return true if given role matches user role"
   end
 end
