@@ -6,12 +6,10 @@ describe Website do
   end
 
   describe "relations" do
-    it { should have_many(:domains) }
+    it { should have_many(:domains).with_dependent(:destroy) }
   end
 
   describe "validations" do
-    specify { Fabricate.build(:website).should be_valid }
-    
     it { should validate_presence_of(:name) }
   end
 end

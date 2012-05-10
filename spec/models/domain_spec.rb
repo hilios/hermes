@@ -11,10 +11,7 @@ describe Domain do
   end
 
   describe "validations" do
-    specify { Fabricate.build(:domain).should be_valid }
-    
     it { should validate_presence_of(:url) }
-    it { should validate_uniqueness_of(:url).case_insensitive }
 
     it { should allow_value("https://www.host.com").for(:url) }
     it { should allow_value("http://www.host.com.br").for(:url) }
@@ -23,9 +20,6 @@ describe Domain do
     it { should allow_value("http://*.host.com").for(:url) }
     it { should allow_value("http://host.com").for(:url) }
     it { should allow_value("http://host.com.es").for(:url) }
-    
-    it { should allow_value("http://localhost").for(:url) }
-    it { should allow_value("http://localhost:3000").for(:url) }
 
     it { should_not allow_value("ssh://host.com").for(:url) }
     it { should_not allow_value("http://").for(:url) }

@@ -51,7 +51,7 @@ group :test do
   gem 'mongoid-rspec'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
-  gem 'fabrication'
+  gem 'factory_girl_rails'
   # Test environment
   gem 'spork', '~> 0.9.0.rc'
   gem 'guard-spork'
