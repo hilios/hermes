@@ -9,3 +9,4 @@ en:
     attributes:
       user:
         login:                  "E-mail"
+        website_ids:            Sites
