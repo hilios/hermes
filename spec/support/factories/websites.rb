@@ -3,10 +3,10 @@
 FactoryGirl.define do
   factory :website do
     sequence(:name) { |n| "Website #{n}" }
-    # domain
+    domains         { FactoryGirl.create_list(:domain, 2) }
   end
 
   factory :domain do
-    sequence(:name) { |n| "http://www.host#{n}.com" }
+    sequence(:url)  { |n| "http://www.host#{n}.com" }
   end
 end
