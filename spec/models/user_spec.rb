@@ -41,6 +41,12 @@ describe User do
   end
   
   describe "#is?" do
-    it "return true if given role matches user role"
+    it "return true if given role matches user role" do
+      user = FactoryGirl.create(:admin)
+      user.is?(:admin).should be_true
+      user.is?('admin').should be_true
+
+      user.is?(:other).should be_false
+    end
   end
 end
