@@ -30,6 +30,8 @@ describe "Users" do
     end
 
     it "creates a new user" do
+      website = FactoryGirl.create(:website)
+
       visit users_path
       click_link 'New User'
       # Fill the form
@@ -38,10 +40,13 @@ describe "Users" do
       fill_in 'Password', :with => 'abc1234'
       fill_in 'Password confirmation', :with => 'abc1234'
       choose 'webmaster'
+      check website.name
+
       click_button 'Create User'
 
       page.should have_content('Foo Bar')
       page.should have_content('foo.bar@host.com')
+      page.should have_content(website.name)
     end
 
     it "edits an user profile" do

@@ -6,6 +6,8 @@ class User
   field :name,      :type => String
   field :role,      :type => String
   field :is_active, :type => Boolean, :null => false, :default => true
+
+  has_and_belongs_to_many :websites, inverse_of: nil
   # Database authenticatable
   field :email,              :type => String, :null => false, :default => ""
   field :encrypted_password, :type => String, :null => false, :default => ""
@@ -37,5 +39,11 @@ class User
     
   def is?(role_name)
     role_name.to_sym == role.to_sym
+  end
+
+  # Solution for habtm
+  # https://github.com/mongoid/mongoid/issues/651
+  def website_ids=(ids)
+    super ids.reject(&:blank?)
   end
 end

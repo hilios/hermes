@@ -6,7 +6,7 @@ describe User do
     it { should have_field(:role).of_type(String) }
     it { should have_field(:is_active).of_type(Boolean) }
 
-    context "devise" do
+    context "devise fields" do
       it { should have_field(:email).of_type(String) }
       it { should have_field(:encrypted_password).of_type(String) }
       # Recoverable
@@ -23,6 +23,11 @@ describe User do
       # Rememberable
       it { should have_field(:remember_created_at).of_type(Time) }
     end
+  end
+
+  describe "relations" do
+    it { should have_and_belong_to_many(:websites) }
+    # 
   end
 
   describe "validations" do

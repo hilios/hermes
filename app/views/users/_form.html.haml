@@ -5,6 +5,7 @@
   = f.input :password
   = f.input :password_confirmation
   = f.input :role, :as => :radio_buttons, :collection => Role.all
+  = f.input :website_ids, :as => :check_boxes, :collection => Website.all
   .form-actions
     = f.button :submit
     = link_to users_path, :class => 'btn' do

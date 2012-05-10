@@ -7,12 +7,14 @@
       = mail_to @user.email
   %p
     = @user.role
-    %br
+    \-
     = User.human_attribute_name :last_sign_in_at
     - if @user.last_sign_in_at
       = time_ago_in_words @user.last_sign_in_at
     - else
       %span.label Never
+  %p
+    = @user.websites.map(&:name).join(', ')
   %p
     = link_to edit_user_path(@user), :class => 'btn btn-large btn-primary' do
       Edit profile
