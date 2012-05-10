@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Users login" do
   it "allows access to a registered user" do
-    @current_user = FactoryGirl.create(:user)
+    @current_user = Fabricate(:user)
     login_as @current_user
     current_path.should == root_path
   end

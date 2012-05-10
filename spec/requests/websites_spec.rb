@@ -7,7 +7,8 @@ describe "Websites" do
     end
 
     it "lists all registered websites" do
-      websites = FactoryGirl.create_list(:website, 5)
+      websites = []
+      5.times { users << Fabricate(:website) }
       visit websites_path
       # Check if all websites are listed
       websites.each do |website|
@@ -16,7 +17,7 @@ describe "Websites" do
     end
 
     it "shows an website profile" do
-      website = FactoryGirl.create(:website)
+      website = Fabricate(:website)
       # Go to websites page and find the website
       visit websites_path
       within("[data-id='#{website.id}']") do
@@ -31,13 +32,15 @@ describe "Websites" do
       click_link 'New Website'
       # Fill the form
       fill_in 'Name', :with => 'Hermes'
+      # Set nested URL
+      # find('.domain_field:first input').set('http://localhost')
       click_button 'Create Website'
 
       page.should have_content('Hermes')
     end
 
     it "edits an website profile" do
-      website = FactoryGirl.create(:website)
+      website = Fabricate(:website)
       # Go to websites page and find the website
       visit websites_path
       within("[data-id='#{website.id}']") do
@@ -50,7 +53,7 @@ describe "Websites" do
     end
 
     it "destroy an website" do
-      website = FactoryGirl.create(:website)
+      website = Fabricate(:website)
       # Go to websites page and find the website
       visit websites_path
       within("[data-id='#{website.id}']") do

@@ -1,11 +1,16 @@
 class Domain
   include Mongoid::Document
-  belongs_to :website
-
   field :url,             :type => String
   field :default_params,  :type => Hash
+  
+  belongs_to :website
 
   validates :url,
     :url => true,
-    :presence => true
+    :presence => true,
+    :uniqueness => {:case_sensitive => false}
+    
+  def url
+    super() or "http://"
+  end
 end

@@ -69,7 +69,7 @@ module Hermes
                                             :helper_specs     => false,
                                             :routing_specs    => false,
                                             :request_specs    => true
-      generator.fixture_replacement :factory_girl, :dir => 'spec/support/factories'
+      generator.fixture_replacement :fabrication
     end
   end
 end

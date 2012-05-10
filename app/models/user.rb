@@ -34,4 +34,8 @@ class User
 
   validates :role,
     :presence => true
+    
+  def is?(role_name)
+    role_name.to_sym == role.to_sym
+  end
 end

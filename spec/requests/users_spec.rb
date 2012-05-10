@@ -7,7 +7,8 @@ describe "Users" do
     end
 
     it "lists all registered users" do
-      users = FactoryGirl.create_list(:user, 5)
+      users = []
+      5.times { users << Fabricate(:user) }
       visit users_path
       # Check if all users are listed
       users.each do |user|
@@ -17,7 +18,7 @@ describe "Users" do
     end
 
     it "shows an user profile" do
-      user = FactoryGirl.create(:user)
+      user = Fabricate(:user)
       # Go to users page and find the user
       visit users_path
       within("[data-id='#{user.id}']") do
@@ -45,7 +46,7 @@ describe "Users" do
     end
 
     it "edits an user profile" do
-      user = FactoryGirl.create(:user)
+      user = Fabricate(:user)
       # Go to users page and find the user
       visit users_path
       within("[data-id='#{user.id}']") do
@@ -58,7 +59,7 @@ describe "Users" do
     end
 
     it "destroy an user" do
-      user = FactoryGirl.create(:user)
+      user = Fabricate(:user)
       # Go to users page and find the user
       visit users_path
       within("[data-id='#{user.id}']") do

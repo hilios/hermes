@@ -1,0 +1,7 @@
+%p.domain_field
+  = f.input :url, :wrapper => :inline do
+    .input-prepend
+      %span.add-on<> URL
+      = f.text_field :url
+      = f.link_to_remove do
+        &times;

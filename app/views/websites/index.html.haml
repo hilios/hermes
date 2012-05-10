@@ -10,7 +10,8 @@
     - @websites.each do |website|
       %tr{:'data-id' => website.id}
         %td= website.name
-        %td= website.domains.map(&:url).join(',')
+        %td
+          %code= website.domains.map(&:url).join(', ')
         %td{:align => :rigth}
           = link_to website, :class => 'btn btn-mini' do
             %i.icon-eye
