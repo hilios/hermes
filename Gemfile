@@ -22,7 +22,6 @@ gem 'carrierwave-mongoid',                  # Support for Mongoid
   require: 'carrierwave/mongoid'
 gem 'mini_magick'                           # Image processor
 gem 'rest-client'                           # A REST client
-gem 'paper_trail'                           # Versioning model
 
 gem 'sinatra'                               # Faster access for the frontend
 

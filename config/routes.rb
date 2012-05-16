@@ -2,12 +2,11 @@ Hermes::Application.routes.draw do
 
   devise_for :users
   resources :users
-
-  resources :resources
-
+  
   resources :websites do
-    get :choose, :on => :collection
+    get :select, :on => :collection, :as => :select
+    resources :resources
   end
   
-  root :to => 'users#index'
+  root :to => 'websites#select'
 end

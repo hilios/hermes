@@ -7,6 +7,14 @@ class ApplicationController < ActionController::Base
   
   layout :layout_by_resource
 
+  def current_website
+    if params[:website_id] or session[:current_website_id]
+      @current_website ||= Website.find(params[:website_id] || session[:current_website_id])
+      session[:current_website_id] = @current_website.id
+    end
+  end
+  helper_method :current_website
+
   def layout_by_resource
     if devise_controller?
       "devise"

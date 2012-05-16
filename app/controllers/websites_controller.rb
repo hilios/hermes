@@ -51,4 +51,11 @@ class WebsitesController < ApplicationController
     @website.destroy
     respond_with(@website)
   end
+
+  # GET /websites/select
+  def select
+    @websites = current_user.websites
+    return redirect_to website_resources_path(@websites.first) if @websites.length == 1
+    respond_with(@websites)
+  end
 end

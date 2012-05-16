@@ -1,0 +1,19 @@
+= render 'page_header'
+
+%table.table.table-striped#websites
+  %thead
+    %tr
+      %th{colspan: 2}= Website.human_attribute_name :name
+  %tbody
+    - @websites.each do |website|
+      %tr{:'data-id' => website.id}
+        %td{width: 10}
+          = link_to website_resources_path(website), :class => 'btn btn-mini' do
+            %i.icon-circle-arrow-right
+            Manage
+        %td= website.name
+    - if @websites.empty?
+      %tr
+        %td{:colspan => 4}
+          %i.icon-exclamation-sign
+          Empty result

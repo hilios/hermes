@@ -8,4 +8,5 @@ end
 def login_as(user)
   user = FactoryGirl.create(user) if user.is_a? Symbol
   login(user.email, user.password)
+  user
 end

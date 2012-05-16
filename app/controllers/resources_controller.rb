@@ -1,4 +1,6 @@
 class ResourcesController < ApplicationController
+  before_filter :load_website
+
   # GET /resources
   # GET /resources.xml
   def index
@@ -48,5 +50,11 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
     @resource.destroy
     respond_with(@resource)
+  end
+
+  private 
+
+  def load_website
+    @website = current_website
   end
 end
