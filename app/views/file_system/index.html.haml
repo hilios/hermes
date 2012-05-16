@@ -1,0 +1,19 @@
+%h1 Listing file_system
+
+%table
+  %tr
+    %th Url
+    %th
+    %th
+    %th
+
+  - @file_system.each do |file_system|
+    %tr
+      %td= file_system.url
+      %td= link_to 'Show', file_system
+      %td= link_to 'Edit', edit_file_system_path(file_system)
+      %td= link_to 'Destroy', file_system, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New File system', new_file_system_path

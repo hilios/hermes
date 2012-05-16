@@ -13,9 +13,9 @@
         %td
           %code= website.domains.map(&:url).join(', ')
         %td{:align => :rigth}
-          = link_to website_pages_path(website), :class => 'btn btn-mini btn-success' do
-            %i.icon-circle-arrow-right
-            Manage
+          / = link_to website_pages_path(website), :class => 'btn btn-mini btn-success' do
+          /   %i.icon-circle-arrow-right
+          /   Manage
           = link_to website, :class => 'btn btn-mini' do
             %i.icon-eye
             Show

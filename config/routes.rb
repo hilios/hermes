@@ -1,5 +1,7 @@
 Hermes::Application.routes.draw do
 
+  resources :file_system
+
   devise_for :users
   resources :users
 
