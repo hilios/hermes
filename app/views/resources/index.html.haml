@@ -10,7 +10,10 @@
 
 %table.table.table-striped#file_system
   %thead
-    %th= Resource.model_name.human
+    %th
+      = Resource.model_name.human.pluralize
+      for
+      = current_website.name
     %th
   %tbody
     - @resources.each do |resource|

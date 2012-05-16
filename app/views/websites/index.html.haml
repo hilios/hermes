@@ -13,12 +13,12 @@
         %td
           %code= website.domains.map(&:url).join(', ')
         %td{:align => :rigth}
-          / = link_to website_pages_path(website), :class => 'btn btn-mini btn-success' do
-          /   %i.icon-circle-arrow-right
-          /   Manage
           = link_to website, :class => 'btn btn-mini' do
             %i.icon-eye
             Show
+          = link_to website_resources_path(website), :class => 'btn btn-mini btn-info' do
+            %i.icon-circle-arrow-right
+            Manage
           = link_to edit_website_path(website), :class => 'btn btn-mini btn-primary' do
             %i.icon-pencil
             Edit
