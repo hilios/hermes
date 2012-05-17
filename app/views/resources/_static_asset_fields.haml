@@ -1,0 +1,5 @@
+/ = f.input :urn
+/ = f.input :is_public, :as => :boolean, :wrapper => :nested
+
+= f.fields_for :static_asset do |asset_form|
+  = asset_form.input :body, :as => :file

@@ -5,6 +5,7 @@ describe Resource do
     it { should have_field(:is_public).of_type(Boolean) }
     it { should have_field(:urn).of_type(String) }
     it { should have_field(:uri).of_type(String) }
+    it { should have_field(:asset_type).of_type(String) }
     
     describe "modules" do
       it { should have_field(:version).of_type(Integer) }

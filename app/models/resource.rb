@@ -4,6 +4,7 @@ class Resource
   include Mongoid::Timestamps::Created
   include Mongoid::Timestamps::Updated
   field :is_public,     :type => Boolean
+  field :asset_type,    :type => String
   # URN => Uniform Resource Name
   field :urn,           :type => String
   # URI => Uniform Resource Identifier

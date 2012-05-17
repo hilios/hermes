@@ -1,36 +1,25 @@
 = render 'page_header'
 
-.btn-group
-  = link_to new_website_resource_path, :class => 'btn' do
-    HTML
-  = link_to new_website_resource_path, :class => 'btn' do
-    Static
-  = link_to new_website_resource_path, :class => 'btn' do
-    Asset
-
 %table.table.table-striped#file_system
   %thead
-    %th
-      = Resource.model_name.human.pluralize
-      for
-      = current_website.name
-    %th
+    %th= Resource.model_name.human.pluralize
+    %th{:width => 200}
   %tbody
     - @resources.each do |resource|
       %tr{:'data-id' => resource.id}
         %td= resource.urn
-        %td{:align => :rigth}
-          = link_to file, :class => 'btn btn-mini' do
+        %td{:align => :right}
+          = link_to [@website, resource], :class => 'btn btn-mini' do
             %i.icon-eye
             Show
-          = link_to edit_file_system_path(file_system), :class => 'btn btn-mini btn-primary' do
+          = link_to edit_website_resource_path(@website, resource), :class => 'btn btn-mini btn-primary' do
             %i.icon-pencil
             Edit
-          = link_to_destroy file, :class => 'btn btn-mini btn-danger' do
+          = link_to_destroy [@website, resource], :class => 'btn btn-mini btn-danger' do
             %i.icon-trash
             Destroy
     - if @resources.empty?
       %tr
-        %td{:colspan => 4}
+        %td{:colspan => 2}
           %i.icon-exclamation-sign
           Empty result

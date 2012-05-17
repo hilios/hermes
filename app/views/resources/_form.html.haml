@@ -1,6 +1,5 @@
 = simple_form_for([@website, @resource]) do |f|
   = f.error_notification
-  = f.input :urn
-  = f.input :is_public, :as => :boolean, :wrapper => :nested
+  = render "#{params[:asset]}_asset_fields", :f => f
   .form-actions
     = f.button :submit

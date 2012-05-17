@@ -5,29 +5,33 @@ class ResourcesController < ApplicationController
   # GET /resources.xml
   def index
     @resources = Resource.all
-    respond_with(@resources)
+    respond_with(@website, @resources)
   end
 
   # GET /resources/1
   # GET /resources/1.xml
   def show
     @resource = Resource.find(params[:id])
-    respond_with(@resource)
+    respond_with(@website, @resource)
   end
 
   # GET /resources/new
   # GET /resources/new.xml
   def new
-    raise Resource.const_get("#{params[:asset]}_asset".camelize).to_s
-    
+    # Ensure the asset class exists, if not raises a NameError and render a 404
+    Resource.const_get("#{params[:asset]}_asset".camelize.to_sym).to_s
+
     @resource = Resource.new
     respond_with(@resource)
+  rescue NameError
+    # raise ActionController::RoutingError.new('Not Found')
+    raise AbstractController::ActionNotFound
   end
 
   # GET /resources/1/edit
   def edit
     @resource = Resource.find(params[:id])
-    respond_with(@resource)
+    respond_with(@website, @resource)
   end
 
   # POST /resources
@@ -35,7 +39,7 @@ class ResourcesController < ApplicationController
   def create
     @resource = Resource.new(params[:resource])
     @resource.save
-    respond_with(@resource)
+    respond_with(@website, @resource)
   end
 
   # PUT /resources/1
@@ -43,7 +47,7 @@ class ResourcesController < ApplicationController
   def update
     @resource = Resource.find(params[:id])
     @resource.update_attributes(params[:resource])
-    respond_with(@resource)
+    respond_with(@website, @resource)
   end
 
   # DELETE /resources/1
@@ -51,7 +55,7 @@ class ResourcesController < ApplicationController
   def destroy
     @resource = Resource.find(params[:id])
     @resource.destroy
-    respond_with(@resource)
+    respond_with(@website, @resource)
   end
 
   private 
