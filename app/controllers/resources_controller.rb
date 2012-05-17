@@ -18,6 +18,8 @@ class ResourcesController < ApplicationController
   # GET /resources/new
   # GET /resources/new.xml
   def new
+    raise Resource.const_get("#{params[:asset]}_asset".camelize).to_s
+    
     @resource = Resource.new
     respond_with(@resource)
   end

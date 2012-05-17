@@ -69,7 +69,7 @@ module Hermes
                                             :helper_specs     => false,
                                             :routing_specs    => false,
                                             :request_specs    => true
-      generator.fixture_replacement :fabrication
+      generator.fixture_replacement nil
     end
   end
 end

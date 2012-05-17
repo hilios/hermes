@@ -1,12 +1,12 @@
 = render 'page_header'
 
 .btn-group
-  / = link_to new_website_resource_path, :class => 'btn' do
-  /   HTML
-  / = link_to new_website_resource_path, :class => 'btn' do
-  /   Static
-  / = link_to new_website_resource_path, :class => 'btn' do
-  /   Asset
+  = link_to new_website_resource_path, :class => 'btn' do
+    HTML
+  = link_to new_website_resource_path, :class => 'btn' do
+    Static
+  = link_to new_website_resource_path, :class => 'btn' do
+    Asset
 
 %table.table.table-striped#file_system
   %thead
