@@ -1,5 +1,6 @@
 class ResourcesController < ApplicationController
   before_filter :load_website
+  before_filter :load_asset, :except => :index
 
   # GET /resources
   # GET /resources.xml
@@ -18,14 +19,8 @@ class ResourcesController < ApplicationController
   # GET /resources/new
   # GET /resources/new.xml
   def new
-    # Ensure the asset class exists, if not raises a NameError and render a 404
-    Resource.const_get("#{params[:asset]}_asset".camelize.to_sym).to_s
-
     @resource = Resource.new
     respond_with(@resource)
-  rescue NameError
-    # raise ActionController::RoutingError.new('Not Found')
-    raise AbstractController::ActionNotFound
   end
 
   # GET /resources/1/edit
@@ -62,5 +57,13 @@ class ResourcesController < ApplicationController
 
   def load_website
     @website = current_website
+  end
+
+  def load_asset
+    # Ensure the asset class exists, if not raises a NameError and render a 404
+    # @asset = Resources.const_get("#{params[:asset]}_asset".camelize.to_sym)
+  rescue NameError
+    # raise ActionController::RoutingError.new('Not Found')
+    raise AbstractController::ActionNotFound
   end
 end
