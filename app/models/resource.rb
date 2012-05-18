@@ -1,8 +1,7 @@
 class Resource
   include Mongoid::Document
   include Mongoid::Versioning
-  include Mongoid::Timestamps::Created
-  include Mongoid::Timestamps::Updated
+  include Mongoid::Timestamps
   field :is_public,     :type => Boolean
   field :asset_type,    :type => String
   # URN => Uniform Resource Name
@@ -14,6 +13,8 @@ class Resource
   has_ancestry
   
   embeds_one :static_asset, :as => :asset
+
+  accepts_nested_attributes_for :asset
 
   before_save :generate_uri
 

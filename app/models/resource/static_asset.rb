@@ -5,5 +5,5 @@ class Resource::StaticAsset
 
   mount_uploader :body
   
-  embedded_in :resource, :polymorphic => true
+  embedded_in :asset, :polymorphic => true
 end
