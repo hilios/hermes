@@ -3,8 +3,9 @@ require 'spec_helper'
 describe "Users login" do
   it "allows access to a registered user" do
     @current_user = FactoryGirl.create(:user)
+    visit root_path
     login_as @current_user
-    current_path.should == root_path
+    current_path.should_not == new_user_session_path
   end
 
   it "denies access to unregistered users" do

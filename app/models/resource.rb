@@ -13,7 +13,7 @@ class Resource
   include Mongoid::Ancestry
   has_ancestry
   
-  embeds_one :static_asset, :as => :asset
+  embeds_one :static_asset, :class_name => Resource::StaticAsset, :as => :asset
 
   before_save :generate_uri
 

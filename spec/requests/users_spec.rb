@@ -6,7 +6,7 @@ describe "Users" do
       login_as(:admin)
     end
 
-    it "lists all registered users" do
+    it "shows all users" do
       users = FactoryGirl.create_list(:user, 5)
       visit users_path
       # Check if all users are listed
@@ -49,7 +49,7 @@ describe "Users" do
       page.should have_content(website.name)
     end
 
-    it "edits an user profile" do
+    it "updates an user profile" do
       user = FactoryGirl.create(:user)
       # Go to users page and find the user
       visit users_path
@@ -62,7 +62,7 @@ describe "Users" do
       page.should have_content('John Doe')
     end
 
-    it "destroy an user" do
+    it "destroys an user" do
       user = FactoryGirl.create(:user)
       # Go to users page and find the user
       visit users_path

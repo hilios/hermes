@@ -6,6 +6,7 @@ describe "Navigation" do
 
     specify do 
       within "header nav" do
+        click_link "Resources"
         click_link "Users"
         click_link "Websites"
       end

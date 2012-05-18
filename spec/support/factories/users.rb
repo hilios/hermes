@@ -6,6 +6,7 @@ FactoryGirl.define do
     email           { "#{name.underscore.gsub(/\s/, '_')}@host.com" }
     password        "abc123"
     role            :webmaster
+    websites        { [FactoryGirl.create(:website)] }
     
     factory(:admin)        { role :admin }
     factory(:webmaster)    { role :webmaster }
