@@ -4,16 +4,12 @@ class Resource
   include Mongoid::Timestamps
   field :is_public,     :type => Boolean
   field :asset_type,    :type => String
-  # URN => Uniform Resource Name
-  field :urn,           :type => String
-  # URI => Uniform Resource Identifier
   field :uri,           :type => String
   
   include Mongoid::Ancestry
   has_ancestry
   
-  embeds_one :static_asset, :class_name => Resource::StaticAsset, :as => :asset
-
+  embeds_one :asset, :cascade_callbacks => true, :class_name => "Asset::Base"
   accepts_nested_attributes_for :asset
 
   before_save :generate_uri

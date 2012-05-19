@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Resource do
   describe "collection" do
     it { should have_field(:is_public).of_type(Boolean) }
-    it { should have_field(:urn).of_type(String) }
     it { should have_field(:uri).of_type(String) }
     it { should have_field(:asset_type).of_type(String) }
     
@@ -16,5 +15,9 @@ describe Resource do
     describe "ancestry" do
       it { should have_field(:ancestry).of_type(String) }
     end
+  end
+  
+  describe "relations" do
+    it { should embed_one(:asset) }
   end
 end

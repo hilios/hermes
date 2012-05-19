@@ -1,5 +1,6 @@
 = simple_form_for([@website, @resource]) do |f|
   = f.error_notification
-  = render "#{params[:asset]}_asset_fields", :f => f
+  = f.fields_for :asset do |asset_form|
+    = render("#{params[:asset]}_asset_fields", :f => asset_form)
   .form-actions
     = f.button :submit
