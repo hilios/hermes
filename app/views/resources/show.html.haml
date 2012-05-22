@@ -1,1 +1,3 @@
-= debug @resource
+- case @resource.asset._type
+- when Asset::Static.name
+  = image_tag @resource.asset.body.url

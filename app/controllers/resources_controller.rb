@@ -19,7 +19,7 @@ class ResourcesController < ApplicationController
   # GET /resources/new.xml
   def new
     @resource = Resource.new
-    @resource.build_asset({}, asset_class)
+    @resource.asset = asset_class.new
     respond_with(@resource)
   end
 
@@ -33,7 +33,6 @@ class ResourcesController < ApplicationController
   # POST /resources.xml
   def create
     @resource = Resource.new(params[:resource])
-    @resource.build_asset
     @resource.save
     respond_with(@website, @resource)
   end
@@ -68,7 +67,7 @@ class ResourcesController < ApplicationController
   end
   
   def asset_type
-    asset_class.to_s
+    asset_class.name.to_s
   end
   helper_method :asset_type
 end
