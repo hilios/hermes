@@ -1,6 +1,6 @@
 CarrierWave.configure do |config|
   # Mongoid::Config.database.name
-  config.grid_fs_database = "#{Mongoid::Config.database.name}_uploads"
+  config.grid_fs_database = Mongoid.database
 
   # Mongoid::Config.database.connection.primary.join(':') # => localhost:27017 in most cases
   # config.grid_fs_host     = 'mongo.example.com'

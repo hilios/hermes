@@ -3,7 +3,6 @@ class Resource
   include Mongoid::Versioning
   include Mongoid::Timestamps
   field :is_public,     :type => Boolean
-  field :asset_type,    :type => String
   field :uri,           :type => String
   
   include Mongoid::Ancestry
