@@ -12,6 +12,5 @@ FactoryGirl.define do
     factory(:webmaster)    { role :webmaster }
     factory(:webdesigner)  { role :webdesigner }
     factory(:copywriter)   { role :copywriter }
-    
   end
 end
