@@ -8,7 +8,7 @@ class Resource
   include Mongoid::Ancestry
   has_ancestry
   
-  embeds_one :asset, :cascade_callbacks => true, :class_name => "Asset::Base"
+  embeds_one :asset, :class_name => "Asset::Base", :cascade_callbacks => true
   accepts_nested_attributes_for :asset
 
   before_save :generate_uri
