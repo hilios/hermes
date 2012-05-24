@@ -1,4 +1,6 @@
 - case @resource.asset.class
 - when Asset::Static
-  = "OK: #{@resource.asset.content}"
-  = image_tag @resource.asset.content.url
+  = image_tag @resource.uri
+- when Asset::Folder
+  %h1= @resource.urn
+  %code= @resource.uri
