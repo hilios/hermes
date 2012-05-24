@@ -3,9 +3,13 @@ class Website
   field :name,            :type => String
   field :default_params,  :type => Hash
 
+  has_many :resources,
+    :dependent => :destroy
+
   has_many :domains, 
     :autosave => true,
     :dependent => :destroy
+    
   accepts_nested_attributes_for :domains, 
     :allow_destroy => true, :reject_if => proc { |domain| domain['url'] == "http://" }
     

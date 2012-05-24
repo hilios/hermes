@@ -4,7 +4,7 @@ class ResourcesController < ApplicationController
   # GET /resources
   # GET /resources.xml
   def index
-    @resources = Resource.all
+    @resources = @website.resources.all
     respond_with(@website, @resources)
   end
 
@@ -33,6 +33,7 @@ class ResourcesController < ApplicationController
   # POST /resources.xml
   def create
     @resource = Resource.new(params[:resource])
+    @resource.website = @website
     @resource.save
     respond_with(@website, @resource)
   end

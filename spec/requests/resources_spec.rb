@@ -6,9 +6,19 @@ describe "Resources" do
     @current_website = @current_user.websites.first
   end
   
-  it "shows all website resources" do
+  it "shows resources for selected website" do
+    website_resources = FactoryGirl.create_list(:resource, 5, :website => @current_website)
+    other_resources   = FactoryGirl.create_list(:resource, 5)
+
     visit website_resources_path(@current_website)
-    
     page.should have_content(@current_website.name)
+
+    website_resources.each do |resource|
+      page.should have_content(resource.uri)
+    end
+    other_resources.each do |resource|
+      page.should_not have_content(resource.uri)
+    end
   end
+
 end

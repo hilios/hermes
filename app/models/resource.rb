@@ -6,14 +6,19 @@ class Resource
   
   include Mongoid::Ancestry
   has_ancestry
-  
-  embeds_one :asset, :class_name => "Asset::Base", :cascade_callbacks => true
 
-  accepts_nested_attributes_for :asset, :reject_if => proc { |attributes| attributes['_type'].blank? }
+  belongs_to :website
+  
+  embeds_one :asset, 
+    :cascade_callbacks => true,
+    :class_name => "Asset::Base"
+
+  accepts_nested_attributes_for :asset, 
+    :reject_if => proc { |attributes| attributes['_type'].blank? }
 
   delegate :urn, :to => :asset
 
-  validates_presence_of :uri, :asset
+  validates_presence_of :uri, :asset, :website
 
   attr_protected :uri
   # Ensure the URI is generated
@@ -32,4 +37,6 @@ class Resource
   def folder?
     asset.is_a? Asset::Folder
   end
+
+  private :uri=
 end

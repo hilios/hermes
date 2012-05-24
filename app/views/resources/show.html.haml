@@ -1,4 +1,4 @@
-- case @resource.asset._type
-- when Asset::Static.name
-  = @resource.asset.content_type
+- case @resource.asset.class
+- when Asset::Static
+  = "OK: #{@resource.asset.content}"
   = image_tag @resource.asset.content.url

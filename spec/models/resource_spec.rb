@@ -17,11 +17,13 @@ describe Resource do
   
   describe "relations" do
     it { should embed_one(:asset) }
+    it { should belong_to(:website) }
   end
 
   describe "validations" do
     it { should validate_presence_of(:uri) }
     it { should validate_presence_of(:asset) }
+    it { should validate_presence_of(:website) }
   end
 
   describe "mass assigment" do
@@ -56,7 +58,7 @@ describe Resource do
     end
   end
 
-  describe "folder?" do
+  describe "#folder?" do
     it "returns true if asset is a folder false otherwise" do
       folder.folder?.should be_true
     end

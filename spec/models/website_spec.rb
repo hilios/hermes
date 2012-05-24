@@ -7,6 +7,7 @@ describe Website do
 
   describe "relations" do
     it { should have_many(:domains).with_dependent(:destroy) }
+    it { should have_many(:resources).with_dependent(:destroy) }
   end
 
   describe "validations" do
