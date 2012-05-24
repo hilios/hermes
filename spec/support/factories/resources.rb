@@ -2,12 +2,11 @@
 
 FactoryGirl.define do
   factory :resource, aliases: [:folder] do
-
     asset { FactoryGirl.build(:asset_folder) }
-
-    factory(:image) do
-      
-    end
+  end
+  
+  factory :image, class: Resource do
+    asset { FactoryGirl.build(:asset_static, :content => upload(:jpg)) }
   end
 
   sequence(:urn) { |n| "resource#{n}" }
@@ -15,5 +14,8 @@ FactoryGirl.define do
   factory :asset_folder, class: Asset::Folder do
     _type Asset::Folder.name
     urn
+  end
+  factory :asset_static, class: Asset::Static do
+    _type Asset::Static.name
   end
 end

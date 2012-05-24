@@ -54,16 +54,6 @@ Spork.prefork do
     # rspec-rails.
     config.infer_base_class_for_anonymous_controllers = false
   end
-
-  # Allow easy access to iile folder
-  def get_file(filename)
-    filename = case filename
-    when :jpg then 'picture.jpg'
-    when :pdf then 'document.pdf'
-    else filename
-    end
-    File.open(Rails.root.join('spec/support/files', filename))
-  end
 end
 
 Spork.each_run do

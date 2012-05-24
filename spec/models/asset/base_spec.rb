@@ -8,4 +8,8 @@ describe Asset::Base do
   describe "relations" do
     it { should be_embedded_in(:resource) }
   end
+  
+  describe "validations" do
+    it { should validate_presence_of(:urn) }
+  end
 end
