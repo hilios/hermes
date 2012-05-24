@@ -1,31 +1,27 @@
 require 'spec_helper'
 
 describe Asset::Static do
-  describe "collection" do
-    it { should have_field(:content) } # It is a String but not until Carrierwave process
-  end
-  
   let(:jpg)       { upload(:jpg) }
   let(:image)     { FactoryGirl.build(:asset_static, :content => jpg) }
-  let(:resource)  { FactoryGirl.create(:image) }
   
-  describe "callbacks" do
-    context "before create" do
-      it "calls assign urn" do
-        Asset::Static.any_instance.should_receive(:assign_urn).at_least(:once)
-        resource # run
-      end
-    end
+  describe "collection" do
+    it { should have_field(:content_type).of_type(String) }
+    it { should have_field(:content) } # It is a String but not until Carrierwave process
   end
-  
-  describe "#assign_urn" do
+
+  describe "validations" do
+    it { should validate_presence_of(:content) }
+  end
+
+  specify { FactoryGirl.build(:image).should be_valid }
+
+  describe "#content=" do
     it "sets the urn with uploaded filename" do
-      image.assign_urn
       image.urn.should == File.basename(jpg)
     end
-  end
-  
-  describe "#assign_content_type" do
-    it "sets the content type from the uploaded file"
+
+    it "sets the content_type with uploaded type" do
+      MIME::Types.type_for(jpg.path).should include(image.content_type)
+    end
   end
 end

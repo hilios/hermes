@@ -9,12 +9,18 @@ FactoryGirl.define do
     asset { FactoryGirl.build(:asset_static, :content => upload(:jpg)) }
   end
 
+  factory :pdf, class: Resource do
+    asset { FactoryGirl.build(:asset_static, :content => upload(:pdf)) }
+  end
+
+  # Assets
   sequence(:urn) { |n| "resource#{n}" }
 
   factory :asset_folder, class: Asset::Folder do
     _type Asset::Folder.name
     urn
   end
+
   factory :asset_static, class: Asset::Static do
     _type Asset::Static.name
   end

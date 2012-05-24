@@ -61,7 +61,14 @@ class ResourcesController < ApplicationController
 
   def asset_class
     # Ensure the asset class exists, if not raises a NameError and render a 404
-    @asset ||= eval("asset/#{params[:asset]}".camelize)
+    @asset ||= if params[:asset].present?
+      eval("asset/#{params[:asset]}".camelize)
+    elsif params[:resource].present? and params[:resource][:asset_attributes].present? and 
+          params[:resource][:asset_attributes][:_type].present?
+      eval(params[:resource][:asset_attributes][:_type])
+    else
+      @resource.asset.class
+    end
   rescue NameError
     raise ActionController::RoutingError.new("#{"asset/#{params[:asset]}".camelize.to_sym} does not exists!")
   end

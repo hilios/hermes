@@ -19,8 +19,7 @@ describe AssetUploader do
   
   describe "validations" do
     it "should only accept images" do
-      pdf = upload(:pdf)
-      lambda { @uploader.store! pdf }.should raise_exception
+      uploader.extension_white_list.should =~ %w(jpg jpeg gif png swf pdf doc docx xls xlsx txt)
     end
   end
 end

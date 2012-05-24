@@ -8,7 +8,8 @@ class Resource
   has_ancestry
   
   embeds_one :asset, :class_name => "Asset::Base", :cascade_callbacks => true
-  accepts_nested_attributes_for :asset
+
+  accepts_nested_attributes_for :asset, :reject_if => proc { |attributes| attributes['_type'].blank? }
 
   delegate :urn, :to => :asset
 
