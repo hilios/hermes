@@ -8,15 +8,16 @@ module Asset
     validates :content,
       :presence => true,
       :integrity => true
+
+    validates_presence_of :content_type
+
+    before_validation :set_content_info
     
     # When setting the content assign the URN with uploaded 
     # file name and content type.
-    def content=(value)
-      super(value)
-      if value
-        self[:content_type] ||= content.set_content_type
-        self[:urn]          ||= content.send(:original_filename)
-      end
+    def set_content_info
+      self[:content_type] ||= content.set_content_type.to_s
+      self[:urn]          ||= content.send(:original_filename)
     end
   end
 end

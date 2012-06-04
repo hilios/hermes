@@ -10,6 +10,7 @@ describe Asset::Static do
   end
 
   describe "validations" do
+    it { should validate_presence_of(:content_type) }
     it { should validate_presence_of(:content) }
   end
 
