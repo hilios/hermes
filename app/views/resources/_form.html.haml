@@ -1,5 +1,6 @@
 = simple_form_for([@website, @resource]) do |f|
   = f.error_notification
+  = f.input :parent_id, :collection => Resource.from(current_website).folders.to_collection
   = f.fields_for :asset do |asset_form|
     = asset_form.input :_type, :as => :hidden
     = render("resources/#{asset_type.underscore}_fields", :f => asset_form)
