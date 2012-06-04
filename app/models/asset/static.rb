@@ -13,8 +13,10 @@ module Asset
     # file name and content type.
     def content=(value)
       super(value)
-      self[:content_type] ||= content.set_content_type
-      self[:urn]          ||= content.send(:original_filename)
+      if value
+        self[:content_type] ||= content.set_content_type
+        self[:urn]          ||= content.send(:original_filename)
+      end
     end
   end
 end
