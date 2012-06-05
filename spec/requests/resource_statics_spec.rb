@@ -31,13 +31,15 @@ describe "Resource" do
     visit website_resources_path(@current_website)
     click_link 'Static'
     # Fill the form
-    attach_file 'Content', upload(:jpg).path
+    attach_file '* Content', upload(:jpg).path
     click_button 'Create Resource'
     # Check if image was created
+    # save_and_open_page
     page.should have_selector("img[src$='#{Resource.last.uri}']")
   end
 
   it "updates image information" do
+    folder = FactoryGirl.create(:folder, :website => @current_website)
     image = FactoryGirl.create(:image, :website => @current_website)
     # Go to resources page and edit image
     visit website_resources_path(@current_website)
@@ -45,7 +47,7 @@ describe "Resource" do
       click_link 'Edit'
     end
     # Fill the form
-    attach_file 'Content', upload(:jpg).path
+    select folder.urn
     click_button 'Update Resource'
     # Check if image was updated
     page.should have_selector("img[src$='#{image.uri}']")

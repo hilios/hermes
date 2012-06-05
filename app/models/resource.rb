@@ -26,6 +26,10 @@ class Resource
   # Custom validations
   scope :folders, where(:'asset._type' => Asset::Folder.name)
   scope :from, lambda { |website| where(:website_id => website.is_a?(Website) ? website.id : website)  }
+  # Returns an array with the values of this resource ready to use as a collection
+  def self.to_collection
+    all.map { |resource| [resource.asset.urn, resource.id] }
+  end
   # Returns the full path with the localization of this resource,
   # the URL is the parents URI with a slash at the end.
   def url
@@ -39,10 +43,6 @@ class Resource
   # Returns true if this resource asset is a folder
   def folder?
     asset.is_a? Asset::Folder
-  end
-  # Returns an array with the values of this resource ready to use as a collection
-  def self.to_collection
-    all.map { |resource| [resource.asset.urn, resource.id] }
   end
 
   private :uri=
