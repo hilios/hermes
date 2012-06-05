@@ -1,10 +1,14 @@
-require 'rubygems'
-require 'bundler/setup'
 require 'sinatra/base'
 
 module Hermes
   class Frontend < Sinatra::Base
-
+    get %r{^*+$} do
+      
+      # Website.find(:'domain.uri' => )
+      # uri = 
+      # p uri.host
+      # p Resource.where(:uri => uri)
+    end
   end
 end
 

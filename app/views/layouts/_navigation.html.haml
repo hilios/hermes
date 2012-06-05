@@ -1,8 +1,9 @@
 %ul.nav
-  %li{:class => activate_if(controller_is? :resources)}
-    = link_to (if current_website then website_resources_path(current_website) else select_websites_path end) do
-      %i.icon-user.icon-white
-      = Resource.model_name.human.pluralize
+  - unless current_website.nil?
+    %li{:class => activate_if(controller_is? :resources)}
+      = link_to (if current_website then website_resources_path(current_website) else select_websites_path end) do
+        %i.icon-user.icon-white
+        = Resource.model_name.human.pluralize
   %li{:class => activate_if(controller_is? :websites)}
     = link_to websites_path do
       %i.icon-user.icon-white

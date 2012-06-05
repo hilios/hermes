@@ -30,6 +30,11 @@ class Resource
   def self.to_collection
     all.map { |resource| [resource.asset.urn, resource.id] }
   end
+  # 
+  def self.find_uri(uri)
+    uri = URI.parse(uri)
+    self.where(:uri => uri.path).first.respond_to_domain?("#{uri.scheme}://#{uri.host}#{':' + uri.port unless uri.port.to_i == 80}")
+  end
   # Returns the full path with the localization of this resource,
   # the URL is the parents URI with a slash at the end.
   def url
@@ -43,6 +48,11 @@ class Resource
   # Returns true if this resource asset is a folder
   def folder?
     asset.is_a? Asset::Folder
+  end
+
+  def respond_to_domain?(domain)
+    # TODO: Check domain
+    raise "TODO: Check website domains"
   end
 
   private :uri=

@@ -16,9 +16,9 @@ module Asset
     def set_urn
       self[:urn] = content.send(:original_filename) if self[:urn].blank?
     end
-    
-    def render(&block)
-      # Mongo::GridFileSystem.new(Mongoid.database).open(key, 'r', &block)
+
+    def file(&block)
+      Mongo::GridFileSystem.new(Mongoid.database).open(content.url, 'r', &block)
     end
   end
 end

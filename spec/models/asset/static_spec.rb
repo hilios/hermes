@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe Asset::Static do
+  # before  { config.storage = :grid_fs } # Allow grid_fs for now
+  # after   { config.storage = :file    }
+
   let(:jpg)   { upload(:jpg) }
   let(:image) { FactoryGirl.build(:asset_static, :content => jpg) }
   
@@ -18,6 +21,14 @@ describe Asset::Static do
     it "sets the urn with uploaded filename" do
       image.set_urn
       image.urn.should == File.basename(jpg)
+    end
+  end
+
+  describe "#file" do
+    it "returns the mongoid " do
+      pending
+      resource = FactoryGirl.create(:image, :asset => image)
+      resource.asset.file
     end
   end
 end

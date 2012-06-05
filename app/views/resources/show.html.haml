@@ -1,6 +1,7 @@
 - case @resource.asset.class
 - when Asset::Static
-  = @resource.asset.inspect
+  %code= @resource.uri
+  %br
   = image_tag @resource.uri
 - when Asset::Folder
   %h1= @resource.urn

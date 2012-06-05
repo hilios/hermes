@@ -11,14 +11,20 @@ Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
+  require 'rack/test'
   require 'rspec/rails'
   require 'rspec/autorun'
   require 'database_cleaner'
+  
+  # Require the sinatra app
+  require Rails.root.join("app/frontend")
+  # Set sinatra environment
+  Hermes::Frontend.set :environment, :test
 
   # Configure carrierwave for test environment
   CarrierWave.configure do |config|
     # No mather what use the file system
-    config.storage = :file
+    # config.storage = :file
     # It's faster if you don't process images when you don't need
     config.enable_processing = false
   end
@@ -30,6 +36,8 @@ Spork.prefork do
     config.include CarrierWave::Test::Matchers
     # Include Mogoid matchers
     config.include Mongoid::Matchers
+    # Rack Test methods
+    config.include Rack::Test::Methods
 
     config.before(:suite) do
       DatabaseCleaner.orm      = :mongoid
@@ -62,4 +70,6 @@ Spork.each_run do
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| load f}
+
+  # load Rails.root.join("app/frontend")
 end
