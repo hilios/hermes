@@ -15,10 +15,17 @@ describe Website do
   end
 
   describe ".for" do
-    def website(url)
-      @website ||= FactoryGirl.create(:website, :domains => [FactoryGirl.create(:domain, :url => url)])
+    def website(url = nil)
+      @website = FactoryGirl.create(:website, :domains => [FactoryGirl.create(:domain, :url => url)]) unless url.nil?
+      @website
     end
 
-    it "returns the website that matchs the uri"
+    it "returns the website that matchs the uri" do
+      website("http://*.hello.com.br")
+
+      Website.for("http://www.hello.com.br").should == website
+      Website.for("http://abc.hello.com.br").should == website
+      Website.for("http://hello.com.br").should == website
+    end
   end
 end
