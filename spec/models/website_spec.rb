@@ -13,4 +13,12 @@ describe Website do
   describe "validations" do
     it { should validate_presence_of(:name) }
   end
+
+  describe ".for" do
+    def website(url)
+      @website ||= FactoryGirl.create(:website, :domains => [FactoryGirl.create(:domain, :url => url)])
+    end
+
+    it "returns the website that matchs the uri"
+  end
 end

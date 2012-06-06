@@ -2,6 +2,10 @@ require 'sinatra/base'
 
 module Hermes
   class Frontend < Sinatra::Base
+    before do
+      # @website = Website.for(uri)
+    end
+
     get %r{^*+$} do
       
       # Website.find(:'domain.uri' => )

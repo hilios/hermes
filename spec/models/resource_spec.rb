@@ -71,13 +71,4 @@ describe Resource do
   describe ".to_collection" do
     it "maps all values to an multi-dimensional array"
   end
-
-  describe ".find_uri" do
-    let(:image) { FactoryGirl.create(:image) }
-
-    it "finds the resource for a given url" do
-      uri = "#{image.website.domains.first.url}#{image.uri}"
-      Resource.find_uri(uri).should == image
-    end
-  end
 end
