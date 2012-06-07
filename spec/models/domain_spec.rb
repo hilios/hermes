@@ -26,4 +26,19 @@ describe Domain do
     it { should_not allow_value("host.com").for(:url) }
     it { should_not allow_value("host").for(:url) }
   end
+  
+  describe ".find" do
+    def domain(url = nil)
+      @domain = FactoryGirl.create(:domain, :url => url) unless url.nil?
+      @domain
+    end
+
+    it "returns the website that matchs the uri" do
+      domain("http://*.hello.com")
+      
+      Domain.find("http://www.hello.com").should == domain
+      Domain.find("http://abc.hello.com").should == domain
+      Domain.find("http://hello.com").should == domain
+    end
+  end
 end

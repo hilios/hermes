@@ -16,10 +16,6 @@ class Website
   validates_presence_of :name
   
   validate :require_one_domain_at_least
-
-  scope :for do |uri|
-    
-  end
   
   def require_one_domain_at_least
     errors[:domain] << :empty if domains.empty?
