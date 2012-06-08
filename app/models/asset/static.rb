@@ -18,7 +18,7 @@ module Asset
     end
 
     def file(&block)
-      Mongo::GridFileSystem.new(Mongoid.database).open(content.url, 'r', &block)
+      Mongo::GridFileSystem.new(Mongoid.database).open(content.path, 'r', &block)
     end
   end
 end

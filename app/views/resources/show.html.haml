@@ -2,7 +2,7 @@
 - when Asset::Static
   %code= @resource.uri
   %br
-  = image_tag @resource.uri
+  %img{:src => @resource.uri}
 - when Asset::Folder
   %h1= @resource.urn
   %code= @resource.uri
