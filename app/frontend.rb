@@ -3,7 +3,11 @@ require 'sinatra/base'
 module Hermes
   class Frontend < Sinatra::Base
     before do
-      # @website = Website.for(uri)
+      begin
+        @website = Domain.find(uri).website
+      rescue
+        halt 404, "Website with domain `#{uri}` not found."
+      end
     end
 
     get %r{^*+$} do

@@ -25,4 +25,8 @@ class Domain
   def url
     super() or "http://"
   end
+  
+  def to_s #:nodoc:
+    url
+  end
 end
