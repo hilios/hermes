@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
   def current_website
     if params[:website_id] or session[:current_website_id]
       @current_website ||= Website.find(params[:website_id] || session[:current_website_id])
+    else
+      @current_website ||= Domain.find(request.original_url).website rescue nil
+    end
+    
+    if @current_website
       session[:current_website_id] = @current_website.id
       @current_website
     end

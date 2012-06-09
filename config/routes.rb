@@ -6,7 +6,9 @@ Hermes::Application.routes.draw do
   resources :websites do
     get :select, :on => :collection, :as => :select
     match 'resources/:asset/new' => 'resources#new', :as => :new_asset_for, :on => :member
-    resources :resources, :except => [:new]
+    resources :resources, :except => [:new] do
+      get :preview, :on => :member
+    end
   end
   
   root :to => 'websites#select'

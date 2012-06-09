@@ -53,6 +53,20 @@ class ResourcesController < ApplicationController
     @resource.destroy
     respond_with(@website, @resource)
   end
+  
+  # GET /preview
+  def preview
+    @resource = Resource.find(params[:id])
+    case @resource.asset.class
+    when Asset::Static
+      send_data @resource.asset.file.read, 
+        :type => @resource.asset.file.content_type, 
+        :filename => @resource.asset.urn, 
+        :disposition => 'inline'
+    else
+      render :file_not_found 
+    end
+  end
 
   private 
 

@@ -2,7 +2,7 @@
 - when Asset::Static
   %code= @resource.uri
   %br
-  %img{:src => @resource.uri}
+  %img{:src => preview_website_resource_path(current_website, @resource)}
 - when Asset::Folder
   %h1= @resource.urn
   %code= @resource.uri
