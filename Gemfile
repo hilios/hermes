@@ -26,8 +26,6 @@ gem 'rest-client'                           # A REST client
 gem 'sinatra'                               # Faster access for the frontend
 
 group :assets do
-  gem 'less', '2.1.0'
-  gem 'less-rails', '2.2.0'
   gem 'less-rails-bootstrap'                # THE Layout
   # gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'            # Make JavaScript easier to write

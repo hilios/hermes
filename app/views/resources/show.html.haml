@@ -1,8 +1,20 @@
+= render 'page_header'
+
 - case @resource.asset.class
 - when Asset::Static
-  %code= @resource.uri
-  %br
-  %img{:src => preview_website_resource_path(current_website, @resource)}
+  %p
+    %h3
+      - case @resource.asset.file.content_type
+      - when /^image\/(.+)$/
+        Image
+  %p
+    URL:
+    %code= @resource.uri
+  %p.well
+    %img{:src => preview_website_resource_path(current_website, @resource)}
 - when Asset::Folder
-  %h1= @resource.urn
-  %code= @resource.uri
+  %p
+    Folder
+  %p
+    URL:
+    %code= @resource.uri
