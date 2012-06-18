@@ -14,7 +14,20 @@
     %img{:src => preview_website_resource_path(current_website, @resource)}
 - when Asset::Folder
   %p
-    Folder
-  %p
-    URL:
-    %code= @resource.uri
+    %h3
+      Folder:
+      = @resource.urn
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= Resource.model_name.human.pluralize
+    %tbody
+      - @resource.children.each do |resource|
+        %tr
+          %td
+            %code= resource.uri
+      - if @resource.children.empty?
+        %tr
+          %td{:colspan => 2}
+            %i.icon-exclamation-sign
+            Empty result

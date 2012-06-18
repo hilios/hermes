@@ -23,7 +23,7 @@ describe "Resource" do
       click_link 'Show'
     end
     # Check image info
-    page.should have_selector("img[src$='#{image.uri}']")
+    page.should have_selector("img[src$='#{preview_website_resource_path(@current_website, image)}']")
   end
 
   it "creates a new image" do
@@ -34,8 +34,7 @@ describe "Resource" do
     attach_file '* Content', upload(:jpg).path
     click_button 'Create Resource'
     # Check if image was created
-    # save_and_open_page
-    page.should have_selector("img[src$='#{Resource.last.uri}']")
+    page.should have_selector("img[src$='#{preview_website_resource_path(@current_website, Resource.last)}']")
   end
 
   it "updates image information" do
@@ -50,7 +49,7 @@ describe "Resource" do
     select folder.urn
     click_button 'Update Resource'
     # Check if image was updated
-    page.should have_selector("img[src$='#{image.uri}']")
+    page.should have_selector("img[src$='#{preview_website_resource_path(@current_website, image)}']")
   end
 
   it "destroys image" do
@@ -61,6 +60,6 @@ describe "Resource" do
       click_link 'Destroy'
     end
     # Check if image info exists
-    page.should have_no_selector("img[src$='#{image.uri}']")
+    page.should have_no_selector("img[src$='#{preview_website_resource_path(@current_website, image)}']")
   end
 end

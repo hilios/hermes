@@ -24,7 +24,6 @@ describe "Resource" do
     end
     # Check folder info
     page.should have_content(folder.urn)
-    page.should have_content(folder.uri)
   end
 
   it "creates a new folder" do
