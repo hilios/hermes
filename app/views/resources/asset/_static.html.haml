@@ -1,0 +1,10 @@
+%p
+  %h3
+    - case @resource.asset.file.content_type
+    - when /^image\/(.+)$/
+      Image
+%p
+  URL:
+  %code= @resource.uri
+%p.well
+  %img{:src => preview_website_resource_path(current_website, @resource)}

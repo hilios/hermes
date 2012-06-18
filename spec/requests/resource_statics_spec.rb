@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Resource" do
+describe "Resource Static" do
   before(:each) do
     @current_user = login_as(:admin)
     @current_website = @current_user.websites.first

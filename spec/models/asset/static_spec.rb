@@ -25,10 +25,11 @@ describe Asset::Static do
   end
 
   describe "#file" do
-    it "returns the mongoid " do
-      pending
+    it "returns the mongoid gridfs item" do
       resource = FactoryGirl.create(:image, :asset => image)
-      resource.asset.file
+      resource.asset.file.should be_a(Mongo::GridIO)
+      resource.asset.file.content_type.should == MIME::Types.type_for(image.content.to_s).first
+      Digest::MD5.hexdigest(resource.asset.file.read).should == Digest::MD5.hexdigest(jpg.read)
     end
   end
 end

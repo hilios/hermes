@@ -69,6 +69,9 @@ describe Resource do
   end
 
   describe ".to_collection" do
-    it "maps all values to an multi-dimensional array"
+    it "maps all criteria values into a multi-dimensional array" do
+      resources = FactoryGirl.create_list(:resource, 5)
+      Resource.to_collection.should be_a(Array)
+    end
   end
 end
