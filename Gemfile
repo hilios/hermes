@@ -1,19 +1,21 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.6'
-gem 'sqlite3'
+gem 'unicorn'                               # Unicorn server
 gem 'mongoid'                               # NoSQL database
 gem 'bson_ext'                              # A faster bson encoder
-gem 'unicorn'                               # Unicorn server
-gem 'mongoid-ancestry'                      # Tree structure with materialised path pattern for mongoid
+
 gem 'haml-rails'                            # HAML for templates
 gem 'coffee-filter'                         # Enable to write coffeescript inside views
 gem 'jquery-rails'                          # JavaScript can be easier
+
 gem 'responders'                            # DRY flash messages and more
 gem 'devise', '2.0.0.rc'                    # User authentication
 gem 'omniauth'                              # Apps authentication (required by devise installation)
 gem 'moulin_rouge'                          # Better organization authorization through CanCan
 gem 'simple_form', '>= 2.0.0'               # Simplificate the forms layouts
+gem 'mongoid-ancestry',                     # Tree structure with materialised path pattern for mongoid
+  git: 'https://github.com/skyeagle/mongoid-ancestry.git'
 gem 'crummy', '~> 1.5.0'                    # Breadcrumbs
 gem 'kaminari'                              # Pagination
 # gem 'ransack'                               # Hanlde search (including forms)

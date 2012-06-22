@@ -5,12 +5,12 @@ class User
   # Collection map
   field :name,      :type => String
   field :role,      :type => String
-  field :is_active, :type => Boolean, :null => false, :default => true
+  field :is_active, :type => Boolean, :default => true
 
   has_and_belongs_to_many :websites, inverse_of: nil
   # Database authenticatable
-  field :email,              :type => String, :null => false, :default => ""
-  field :encrypted_password, :type => String, :null => false, :default => ""
+  field :email,              :type => String, :default => ""
+  field :encrypted_password, :type => String, :default => ""
   # Recoverable
   field :reset_password_token,   :type => String
   field :reset_password_sent_at, :type => Time
