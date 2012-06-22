@@ -6,7 +6,7 @@ module Hermes
       begin
         @website = Domain.find(uri).website
       rescue
-        halt 404, "Website with domain `#{uri}` not found."
+        halt 404, "Website `#{uri}` not found."
       end
     end
 

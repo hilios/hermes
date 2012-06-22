@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.6'
 gem 'sqlite3'
 gem 'mongoid'                               # NoSQL database
 gem 'bson_ext'                              # A faster bson encoder
@@ -16,7 +16,7 @@ gem 'moulin_rouge'                          # Better organization authorization 
 gem 'simple_form', '>= 2.0.0'               # Simplificate the forms layouts
 gem 'crummy', '~> 1.5.0'                    # Breadcrumbs
 gem 'kaminari'                              # Pagination
-gem 'ransack'                               # Hanlde search (including forms)
+# gem 'ransack'                               # Hanlde search (including forms)
 gem 'carrierwave'                           # Handle uploaded files
 gem 'carrierwave-mongoid',                  # Support for Mongoid
   require: 'carrierwave/mongoid'
@@ -26,11 +26,12 @@ gem 'rest-client'                           # A REST client
 gem 'sinatra'                               # Faster access for the frontend
 
 group :assets do
-  gem 'less-rails-bootstrap'                # THE Layout
   # gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'            # Make JavaScript easier to write
-  gem 'therubyracer', platform: :ruby       # JavaScript evaluation
-  gem 'uglifier', '>= 1.0.3'                # Assets compressor
+  gem 'less-rails'                          # CSS compiler
+  gem 'less-rails-bootstrap'                # THE Layout
+  gem 'coffee-rails', '~> 3.2.1'            # JS compiler
+  gem 'therubyracer', :platforms => :ruby   # Javascript evaluator
+  gem 'uglifier', '>= 1.0.3'                # Compress assets
 end
 
 group :development do
