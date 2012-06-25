@@ -3,24 +3,24 @@
 %table.table.table-striped#file_system
   %thead
     %th= Resource.model_name.human.pluralize
-    %th{:width => 200}
+    %th{width: 200}
   %tbody
     - @resources.each do |resource|
-      %tr{:'data-id' => resource.id}
+      %tr{data: {id: resource.id}}
         %td
           = resource.uri
-        %td{:align => :right}
-          = link_to [current_website, resource], :class => 'btn btn-mini' do
+        %td{align: :right}
+          = link_to [current_website, resource], class: 'btn btn-mini' do
             %i.icon-eye
             Show
-          = link_to edit_website_resource_path(current_website, resource), :class => 'btn btn-mini btn-primary' do
+          = link_to edit_website_resource_path(current_website, resource), class: 'btn btn-mini btn-primary' do
             %i.icon-pencil
             Edit
-          = link_to_destroy [current_website, resource], :class => 'btn btn-mini btn-danger' do
+          = link_to_destroy [current_website, resource], class: 'btn btn-mini btn-danger' do
             %i.icon-trash
             Destroy
     - if @resources.empty?
       %tr
-        %td{:colspan => 2}
+        %td{colspan: 2}
           %i.icon-exclamation-sign
           Empty result

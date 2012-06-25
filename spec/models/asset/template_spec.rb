@@ -7,5 +7,6 @@ describe Asset::Template do
 
   describe "relations" do
     it { should embed_many(:variables).of_type(Asset::TemplateVariable) }
+    it { should belong_to(:template) }
   end
 end

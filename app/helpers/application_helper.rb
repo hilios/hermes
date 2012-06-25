@@ -10,7 +10,8 @@ module ApplicationHelper
   def link_to_destroy(*args, &block)
     arg_index = if block_given? then 1 else 2 end
     args[arg_index] ||= {}
-    args[arg_index][:confirm] = t('actions.delete.are_you_sure', :default => 'Are you sure?') unless args[arg_index].has_key? :confirm
+    args[arg_index][:data] = {} unless args[arg_index].has_key? :data
+    args[arg_index][:data][:confirm] = t(:are_you_sure, :default => 'Are you sure?') unless args[arg_index][:data].has_key? :confirm
     args[arg_index][:method]  = :delete unless args[arg_index].has_key? :method
     link_to(*args, &block)
   end

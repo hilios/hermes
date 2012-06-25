@@ -16,9 +16,9 @@
   %p
     = @user.websites.map(&:name).join(', ')
   %p
-    = link_to edit_user_path(@user), :class => 'btn btn-large btn-primary' do
+    = link_to edit_user_path(@user), class: 'btn btn-large btn-primary' do
       Edit profile
-    = link_to users_path, :class => 'btn btn-large' do
+    = link_to users_path, class: 'btn btn-large' do
       %i.icon-arrow-left
       Back
 

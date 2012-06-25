@@ -4,8 +4,10 @@ module Asset
     include Mongoid::Versioning
     include Mongoid::Timestamps
 
-    field :content,   :type => String
+    field :content, type: String
 
-    embeds_many :variables, :class_name => Asset::TemplateVariable.name
+    belongs_to :template,   class_name: Asset::Template.name
+
+    embeds_many :variables, class_name: Asset::TemplateVariable.name
   end
 end

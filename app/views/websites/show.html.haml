@@ -5,10 +5,10 @@
   %p
     %code= @website.urls.join(', ')
   %p
-    = link_to edit_website_path(@website), :class => 'btn btn-large btn-primary' do
+    = link_to edit_website_path(@website), class: 'btn btn-large btn-primary' do
       %i.icon-pencil.icon-white
       Edit
-    = link_to websites_path, :class => 'btn btn-large' do
+    = link_to websites_path, class: 'btn btn-large' do
       %i.icon-arrow-left
       Back
 %fieldset

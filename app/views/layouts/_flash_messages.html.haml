@@ -8,6 +8,6 @@
     end
   - if only.nil? or only == type
     - unless flash[type].nil?
-      %div.alert{:class => class_name}
-        %a.close{:'data-dismiss' => "alert"} &times;
+      %div.alert{class: class_name}
+        %a.close{data: {dismiss: "alert"}} &times;
         = flash[type]

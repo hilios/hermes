@@ -1,7 +1,7 @@
 = f.input :urn
 = f.input :variables do
   = f.nested_fields_for :variables
-  = f.link_to_add :variables, :class => 'btn btn-mini' do
+  = f.link_to_add :variables, class: 'btn btn-mini' do
     Add variable
 = f.input :content do
   = f.text_area :content

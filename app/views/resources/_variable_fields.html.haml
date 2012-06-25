@@ -1,9 +1,9 @@
 %p.variable_field
-  = f.input :name, :wrapper => :inline do
+  = f.input :name, wrapper: :inline do
     .input-prepend.input-append
       %span.add-on<> Name
       = f.text_field :name
-      = f.input :type,        :wrapper => :inline, :collection => Asset::TemplateVariable.type_collection, :include_blank => false
-      = f.input :allow_blank, :wrapper => :inline, :as => :boolean
+      = f.input :type,        wrapper: :inline, collection: Asset::TemplateVariable.type_collection, include_blank: false
+      = f.input :allow_blank, wrapper: :inline, as: :boolean
       = f.link_to_remove do
         &times;

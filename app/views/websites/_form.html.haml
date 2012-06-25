@@ -1,12 +1,12 @@
 = simple_form_for(@website) do |f|
   = f.error_notification
-  = f.input :name, :input_html => {:class => 'span5'}
+  = f.input :name, input_html: {class: 'span5'}
   = f.input :domains do
     = f.nested_fields_for :domains
-    = f.link_to_add(:domains, :class => 'btn btn-mini') do
+    = f.link_to_add(:domains, class: 'btn btn-mini') do
       Add new URL
   .form-actions
     = f.button :submit
-    = link_to websites_path, :class => 'btn' do
+    = link_to websites_path, class: 'btn' do
       %i.icon-arrow-left
       Back

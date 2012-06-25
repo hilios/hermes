@@ -9,23 +9,23 @@
       %th{width: 220}
   %tbody
     - @users.each do |user|
-      %tr{:'data-id' => user.id}
+      %tr{data: {id: user.id}}
         %td= user.name
         %td= user.email
         %td
           %code= ":#{user.role}"
-        %td{:align => :rigth}
-          = link_to user, :class => 'btn btn-mini' do
+        %td{align: :rigth}
+          = link_to user, class: 'btn btn-mini' do
             %i.icon-eye
             Show
-          = link_to edit_user_path(user), :class => 'btn btn-mini btn-primary' do
+          = link_to edit_user_path(user), class: 'btn btn-mini btn-primary' do
             %i.icon-pencil
             Edit
-          = link_to_destroy user, :class => 'btn btn-mini btn-danger' do
+          = link_to_destroy user, class: 'btn btn-mini btn-danger' do
             %i.icon-trash
             Destroy
     - if @users.empty?
       %tr
-        %td{:colspan => 4}
+        %td{colspan: 4}
           %i.icon-exclamation-sign
           Empty result

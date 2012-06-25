@@ -1,17 +1,17 @@
 .page-header
   .pull-right
     - if not action_is? :index
-      = link_to website_resources_path(current_website), :class => 'btn' do
+      = link_to website_resources_path(current_website), class: 'btn' do
         %i.icon-arrow-left.icon-white
         Back
     - if action_is? :index
       .btn-group
-        = link_to new_asset_for_website_path(current_website, :asset => :folder), :class => 'btn' do
+        = link_to new_asset_for_website_path(current_website, asset: :folder),    class: 'btn' do
           = Asset::Folder.model_name.human
-        = link_to new_asset_for_website_path(current_website, :asset => :static), :class => 'btn' do
+        = link_to new_asset_for_website_path(current_website, asset: :static),    class: 'btn' do
           = Asset::Static.model_name.human
-        / = link_to new_asset_for_website_path(current_website, :asset => :text), :class => 'btn' do
-        /   Asset
+        = link_to new_asset_for_website_path(current_website, asset: :template),  class: 'btn' do
+          = Asset::Template.model_name.human
 
   %h1
     = current_website.name
