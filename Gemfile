@@ -20,8 +20,8 @@ gem 'crummy', '~> 1.5.0'                    # Breadcrumbs
 gem 'kaminari'                              # Pagination
 # gem 'ransack'                               # Hanlde search (including forms)
 gem 'carrierwave'                           # Handle uploaded files
-gem 'carrierwave-mongoid',                  # Support for Mongoid
-  require: 'carrierwave/mongoid'
+gem "carrierwave-mongoid",                  # Support for Mongoid
+  git: "https://github.com/jnicklas/carrierwave-mongoid.git", branch: "mongoid-3.0"
 gem 'mini_magick'                           # Image processor
 gem 'rest-client'                           # A REST client
 

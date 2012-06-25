@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/jnicklas/carrierwave-mongoid.git
+  revision: ccbec883f6443a6bc05341a4863c0ffe8db40d05
+  branch: mongoid-3.0
+  specs:
+    carrierwave-mongoid (0.3.0.alpha)
+      carrierwave (~> 0.6.1)
+      mongoid (~> 3.0.0.rc)
+
+GIT
   remote: https://github.com/skyeagle/mongoid-ancestry.git
   revision: f8f7b81c1c487a6637bc085f6b34b8978085ef4e
   specs:
@@ -65,9 +74,6 @@ GEM
     carrierwave (0.6.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
-    carrierwave-mongoid (0.1.0)
-      carrierwave
-      mongoid
     childprocess (0.3.2)
       ffi (~> 1.0.6)
     coffee-filter (0.1.1)
@@ -171,7 +177,7 @@ GEM
     net-ssh (2.5.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    nokogiri (1.5.4)
+    nokogiri (1.5.5)
     omniauth (1.1.0)
       hashie (~> 1.2)
       rack
@@ -282,7 +288,7 @@ DEPENDENCIES
   capybara
   capybara-webkit
   carrierwave
-  carrierwave-mongoid
+  carrierwave-mongoid!
   coffee-filter
   coffee-rails (~> 3.2.1)
   crummy (~> 1.5.0)
