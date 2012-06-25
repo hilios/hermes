@@ -11,12 +11,16 @@ module Hermes
     end
 
     get %r{^.+$} do
-      resource = Resource.where(:uri => request.path, :website_id => @website.id).first
-      case resource.asset.class
-      when Asset::Static
-        status        200
-        content_type  resource.asset.file.content_type
-        body          resource.asset.file.read
+      begin
+        resource = Resource.where(:uri => request.path, :website_id => @website.id).first
+        case resource.asset.class
+        when Asset::Static
+          status        200
+          content_type  resource.asset.file.content_type
+          body          resource.asset.file.read
+        end
+      rescue
+        halt 404, "Resource `#{uri}` not found."
       end
     end
   end
