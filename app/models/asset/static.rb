@@ -9,12 +9,12 @@ module Asset
       :integrity => true,
       :on => :create
       
-    before_validation :set_urn
+    before_validation :set_name
       
     # When setting the content assign the URN with uploaded 
     # file name and content type.
-    def set_urn
-      self[:urn] = content.send(:original_filename) if self[:urn].blank?
+    def set_name
+      self[:name] = content.send(:original_filename) if self[:name].blank?
     end
 
     def file(&block)

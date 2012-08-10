@@ -32,7 +32,8 @@ class WebsitesController < ApplicationController
   # POST /websites.xml
   def create
     @website = Website.new(params[:website])
-    @website.domains.build if @website.save
+    @website.save
+    @website.domains.build if @website.domains.empty?
     respond_with(@website)
   end
 
@@ -40,7 +41,8 @@ class WebsitesController < ApplicationController
   # PUT /websites/1.xml
   def update
     @website = Website.find(params[:id])
-    @website.domains.build if @website.update_attributes(params[:website])
+    @website.update_attributes(params[:website])
+    @website.domains.build if @website.domains.empty?
     respond_with(@website)
   end
 
@@ -52,10 +54,13 @@ class WebsitesController < ApplicationController
     respond_with(@website)
   end
 
-  # GET /websites/select
-  def select
-    @websites = current_user.websites
-    return redirect_to website_resources_path(@websites.first) if @websites.length == 1
-    respond_with(@websites)
+  # GET /websites/1/manage
+  # GET /websites/1/manage.xml
+  def manage
+    @website = Website.find(params[:id])
+    current_website = @website
+    respond_with(@website) do |format|
+      format.html { redirect_to resources_path }
+    end
   end
 end

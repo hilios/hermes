@@ -1,15 +1,30 @@
 Hermes::Application.routes.draw do
 
-  devise_for :users
-  resources  :users
+  # Auth
+  devise_for  :users
+
+  resources   :users
+  resource    :user, only: [:show, :edit, :update], as: :current_user
   
   resources :websites do
-    get :select, :on => :collection, :as => :select
-    match 'resources/:asset/new' => 'resources#new', :as => :new_asset_for, :on => :member
-    resources :resources, :except => [:new] do
-      get :preview, :on => :member
+    get :manage, :on => :member, :as => :manage
+  end
+
+  # Creates for each asset class an exclusive route
+  # with the following format:
+  #   <class name without namespace>_path
+  #
+  # In the end the outputed route will web
+  scope 'resources' do
+    Resource.assets.each do |asset|
+      resources :resources,
+        as: asset.model_name.route_key,
+        path: asset.model_name.singular_route_key, except: [:index], _type: asset.name
     end
   end
+  resources :resources, :only => [:index] do
+    get :preview, :on => :member
+  end
   
-  root :to => 'websites#select'
+  root :to => 'resources#index'
 end

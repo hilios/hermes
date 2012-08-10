@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :set_current_user_id
   # GET /users
   # GET /users.xml
   def index
@@ -48,4 +49,11 @@ class UsersController < ApplicationController
     @user.destroy
     respond_with(@user)
   end
+
+private
+  
+  def set_current_user_id
+    params[:id] ||= current_user.id
+  end
+
 end

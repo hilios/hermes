@@ -12,7 +12,7 @@ module Hermes
 
     get %r{^.+$} do
       begin
-        resource = Resource.where(:uri => request.path, :website_id => @website.id).first
+        resource = Resource.where(path: request.path, website_id: @website.id).first
         case resource.asset.class
         when Asset::Static
           status        200

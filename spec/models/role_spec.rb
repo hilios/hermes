@@ -39,7 +39,7 @@ describe Role do
     end
     
     it "raises an error if request role does not exists" do
-      lambda { Role.find(:foo_bor) }.should raise_error
+      lambda { Role.find(:foo_bar) }.should raise_error
     end
   end
 end

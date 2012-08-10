@@ -1,5 +1,6 @@
 = simple_form_for(@website) do |f|
   = f.error_notification
+  = debug @website.errors.full_messages
   = f.input :name, input_html: {class: 'span5'}
   = f.input :domains do
     = f.nested_fields_for :domains

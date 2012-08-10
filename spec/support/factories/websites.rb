@@ -2,11 +2,11 @@
 
 FactoryGirl.define do
   factory :website do
-    sequence(:name) { |n| "Website #{n}" }
+    name            { Forgery(:name).company_name }
     domains         { FactoryGirl.create_list(:domain, 2) }
   end
 
   factory :domain do
-    sequence(:url)  { |n| "http://www.host#{n}.com" }
+    url             { "http://#{Forgery(:internet).domain_name}" }
   end
 end

@@ -2,44 +2,59 @@ class Resource
   include Mongoid::Document
   include Mongoid::Versioning
   include Mongoid::Timestamps
-  field :uri,           :type => String
-  
   include Mongoid::Ancestry
+
+  field :path, type: String
+  
   has_ancestry
 
   belongs_to :website
   
   embeds_one :asset, 
-    :cascade_callbacks => true,
-    :class_name => "Asset::Base"
+    cascade_callbacks: true,
+    class_name: Asset::Base.name
 
   accepts_nested_attributes_for :asset, 
-    :reject_if => proc { |attributes| attributes['_type'].blank? }
+    reject_if: ->(attributes) { attributes[:_type].blank? }
 
-  delegate :urn, :to => :asset
+  delegate :name, 
+    to: :asset
 
-  validates_presence_of :uri, :asset, :website
+  attr_protected :path
 
-  attr_protected :uri
-  # Ensure the URI is generated
-  before_save :uri
-  # Custom validations
+  validates :path,
+    presence: true,
+    uniqueness: true
+
+  validates :asset,
+    presence: true
+
+  validates :website,
+    presence: true
+
+  # Ensure the path is generated
+  before_validation :generate_path
+
+  # Scopes
   scope :folders, where(:'asset._type' => Asset::Folder.name)
-  scope :from, lambda { |website| where(:website_id => website.is_a?(Website) ? website.id : website)  }
+  scope :from, ->(website) { where(website_id: website.is_a?(Website) ? website.id : website)  }
+
   # Returns an array with the values of this resource ready to use as a collection
   def self.to_collection
-    all.map { |resource| [resource.asset.urn, resource.id] }
+    all.map { |resource| [resource.asset.name, resource.id] }
   end
+
+  # Overrides the ancestry method and return the self path
+  def path
+    self[:path]
+  end
+
   # Returns the full path with the localization of this resource,
   # the URL is the parents URI with a slash at the end.
-  def url
-    "#{parent.uri unless is_root?}/"
+  def generate_path
+    self[:path] = "#{parent.path unless is_root?}/#{name}"
   end
-  # Returns the uri for this resource
-  # URI = URL + URN
-  def uri
-    self[:uri] = "#{url}#{urn}"
-  end
+
   # Returns true if this resource asset is a folder
   def folder?
     asset.is_a? Asset::Folder
@@ -50,5 +65,13 @@ class Resource
     raise "TODO: Check website domains"
   end
 
-  private :uri=
+  # Returns an array with all asset classes avaliable
+  # on this module besides Base
+  def self.assets
+    @_assets ||= Asset.constants.map do |class_name|
+      Asset.const_get(class_name)
+    end.reject do |klass|
+      klass == Asset::Base
+    end
+  end
 end

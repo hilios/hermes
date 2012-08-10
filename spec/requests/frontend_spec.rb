@@ -21,8 +21,8 @@ describe Hermes::Frontend do
   describe Resource do
     context Asset::Static do
       it "returns the resource" do
-        image = FactoryGirl.create(:image, :website => website, :parent => FactoryGirl.create(:folder))
-        get image.uri
+        image = FactoryGirl.create(:image, website: website, parent: FactoryGirl.create(:folder))
+        get image.path
         last_response.should be_ok
       end
     end

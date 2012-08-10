@@ -2,11 +2,11 @@
 
 FactoryGirl.define do
   factory :user do
-    sequence(:name) { |n| "User #{n}" }
-    email           { "#{name.underscore.gsub(/\s/, '_')}@host.com" }
-    password        "abc123"
+    name            { Forgery(:name).full_name }
+    email           { Forgery(:email).address }
+    password        { Forgery(:basic).password(at_least: 8) }
     role            :webmaster
-    websites        { [FactoryGirl.create(:website)] }
+    websites        { FactoryGirl.create_list(:website, 1) }
     
     factory(:admin)        { role :admin }
     factory(:webmaster)    { role :webmaster }

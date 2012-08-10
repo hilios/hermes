@@ -15,9 +15,9 @@ class Website
     
   validates_presence_of :name
   
-  validate :require_one_domain_at_least
+  validate :at_least_one_domain
   
-  def require_one_domain_at_least
+  def at_least_one_domain
     errors[:domain] << :empty if domains.empty?
   end
   

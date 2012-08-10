@@ -24,11 +24,11 @@
                     %b.caret
                   %ul.dropdown-menu
                     %li
-                      = link_to current_user do
+                      = link_to current_user_path do
                         %i.icon-user
                         My profile
                     %li
-                      = link_to current_user do
+                      = link_to edit_current_user_path do
                         %i.icon-asterisk
                         Update password
                 %li.divider-vertical

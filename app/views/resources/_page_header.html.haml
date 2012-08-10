@@ -6,12 +6,12 @@
         Back
     - if action_is? :index
       .btn-group
-        = link_to new_asset_for_website_path(current_website, asset: :folder),    class: 'btn' do
-          = Asset::Folder.model_name.human
-        = link_to new_asset_for_website_path(current_website, asset: :static),    class: 'btn' do
-          = Asset::Static.model_name.human
-        = link_to new_asset_for_website_path(current_website, asset: :template),  class: 'btn' do
-          = Asset::Template.model_name.human
+        / = link_to new_folder_path,    class: 'btn' do
+        /   = Asset::Folder.model_name.human
+        / = link_to new_static_path,    class: 'btn' do
+        /   = Asset::Static.model_name.human
+        / = link_to new_template_path,  class: 'btn' do
+        /   = Asset::Template.model_name.human
 
   %h1
     = current_website.name

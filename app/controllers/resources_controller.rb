@@ -1,5 +1,5 @@
 class ResourcesController < ApplicationController
-  before_filter :load_website
+  before_filter :load_website, except: :manage
 
   # GET /resources
   # GET /resources.xml
@@ -19,7 +19,7 @@ class ResourcesController < ApplicationController
   # GET /resources/new.xml
   def new
     @resource = Resource.new
-    @resource.asset = asset_class.new
+    @resource.asset = asset_type.new
     respond_with(@resource)
   end
 
@@ -68,28 +68,20 @@ class ResourcesController < ApplicationController
     end
   end
 
-  private 
+private 
 
   def load_website
     @website = current_website
+    return redirect_to websites_path if @website.nil?
   end
 
-  def asset_class
-    # Ensure the asset class exists, if not raises a NameError and render a 404
-    @asset ||= if params[:asset].present?
-      eval("asset/#{params[:asset]}".camelize)
-    elsif params[:resource].present? and params[:resource][:asset_attributes].present? and 
-          params[:resource][:asset_attributes][:_type].present?
-      eval(params[:resource][:asset_attributes][:_type])
-    else
-      @resource.asset.class
-    end
-  rescue NameError
-    raise ActionController::RoutingError.new("#{"asset/#{params[:asset]}".camelize.to_sym} does not exists!")
+  def type_key
+    asset_type.model_name.singular_route_key.to_sym
   end
   
   def asset_type
-    asset_class.name.to_s
+    @asset_type ||= params[:_type].constantize
   end
   helper_method :asset_type
+
 end

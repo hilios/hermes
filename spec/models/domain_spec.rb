@@ -29,7 +29,7 @@ describe Domain do
   
   describe ".find" do
     def domain(url = nil)
-      @domain = FactoryGirl.create(:domain, :url => url) unless url.nil?
+      @domain = FactoryGirl.create(:domain, url: url) unless url.nil?
       @domain
     end
 

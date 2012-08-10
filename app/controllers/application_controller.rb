@@ -8,18 +8,19 @@ class ApplicationController < ActionController::Base
   layout :layout_by_resource
 
   def current_website
-    if params[:website_id] or session[:current_website_id]
-      @current_website ||= Website.find(params[:website_id] || session[:current_website_id])
+    @current_website ||= if session[:current_website_id]
+      Website.find(session[:current_website_id])
     else
-      @current_website ||= Domain.find(request.original_url).website rescue nil
+      Domain.find(request.original_url).website rescue nil
     end
-    
-    if @current_website
-      session[:current_website_id] = @current_website.id
-      @current_website
-    end
+    current_website = @current_website
+    @current_website
   end
   helper_method :current_website
+
+  def current_website=(website)
+    session[:current_website_id] = website.id
+  end
 
   def layout_by_resource
     if devise_controller?

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Resource do
   describe "collection" do
-    it { should have_field(:uri).of_type(String) }
+    it { should have_field(:path).of_type(String) }
     
     describe "modules" do
       it { should have_field(:version).of_type(Integer) }
@@ -21,40 +21,43 @@ describe Resource do
   end
 
   describe "validations" do
-    it { should validate_presence_of(:uri) }
+    it { should validate_presence_of(:path) }
+    it { should validate_uniqueness_of(:path) }
+
     it { should validate_presence_of(:asset) }
     it { should validate_presence_of(:website) }
   end
 
-  describe "mass assigment" do
-    it { should_not allow_mass_assignment_of(:uri) }
+  describe "mass assigments" do
+    it { should_not allow_mass_assignment_of(:path) }
   end
 
   describe "callbacks" do
-    it "calls the #uri method before save" do
-      Resource.any_instance.stub(:uri) { "/path/to/file" }
-      Resource.any_instance.should_receive(:uri).at_least(:once)
-      FactoryGirl.create(:resource)
+    it "calls the #generate_path method before validation" do
+      Resource.any_instance.stub(:generate_path) { "/path/to/file" }
+      Resource.any_instance.should_receive(:generate_path).at_least(:once)
+      FactoryGirl.build(:resource).valid?
     end
   end
 
-  let(:folder)      { FactoryGirl.create(:folder)    }
-  let(:sub_folder)  { FactoryGirl.create(:folder, :parent => folder)  }
+  let(:folder)      { FactoryGirl.create(:folder) }
+  let(:sub_folder)  { FactoryGirl.create(:folder, parent: folder)  }
 
-  describe "#url" do
-    it "returns a slash if is root" do
-      folder.url.should == "/"
+  describe "#path" do
+    it "overrides ancestry default method and returns an string" do
+      folder.path.is_a? String
     end
 
-    it "returns a string with the parents uri with a slash at the end" do
-      sub_folder.url.should =~ Regexp.new(sub_folder.parent.uri)
+    it "starts with a slash if is a root node" do
+      folder.path.should =~ /^\//
     end
-  end
 
-  describe "#uri" do
-    it "builds the uri string with the parent " do
-      folder.uri.should =~ Regexp.new(folder.url)
-      folder.uri.should =~ Regexp.new(folder.urn)
+    it "returns the parents path" do
+      sub_folder.path.should =~ Regexp.new(sub_folder.parent.path)
+    end
+
+    it "returns the urn os the asset " do
+      folder.path.should =~ Regexp.new(folder.name)
     end
   end
 
@@ -64,14 +67,22 @@ describe Resource do
     end
   end
 
-  describe "#update_childrens_uri" do
-    it "fires a signal to update childrens uri"
+  describe "#update_childrens_path" do
+    it "fires a signal to update childrens path"
   end
 
   describe ".to_collection" do
     it "maps all criteria values into a multi-dimensional array" do
       resources = FactoryGirl.create_list(:resource, 5)
       Resource.to_collection.should be_a(Array)
+    end
+  end
+
+  describe ".assets" do
+    it "returns an array with the modules classes" do
+      Resource.assets.should be_an(Array)
+      Resource.assets.first.should be_a(Class)
+      Resource.assets.should_not include(Asset::Base)
     end
   end
 end
