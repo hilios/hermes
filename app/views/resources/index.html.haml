@@ -8,12 +8,12 @@
     - @resources.each do |resource|
       %tr{data: {id: resource.id}}
         %td
-          = resource.uri
+          = resource.path
         %td.btn-group
           = link_to url_for(resource), class: 'btn btn-mini' do
             %i.icon-eye
             Show
-          = link_to url_for(:edit, resource), class: 'btn btn-mini btn-primary' do
+          = link_to url_for(resource), class: 'btn btn-mini btn-primary' do
             %i.icon-pencil
             Edit
           = link_to_destroy url_for(resource), class: 'btn btn-mini btn-danger' do

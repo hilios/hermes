@@ -19,10 +19,10 @@ Hermes::Application.routes.draw do
     Resource.assets.each do |asset|
       resources :resources,
         as: asset.model_name.route_key,
-        path: asset.model_name.singular_route_key, except: [:index], _type: asset.name
+        path: asset.model_name.singular_route_key, only: [:show, :new, :edit], _type: asset.name
     end
   end
-  resources :resources, :only => [:index] do
+  resources :resources, :except => [:show, :new, :edit] do
     get :preview, :on => :member
   end
   

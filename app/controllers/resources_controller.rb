@@ -26,7 +26,7 @@ class ResourcesController < ApplicationController
   # GET /resources/1/edit
   def edit
     @resource = Resource.find(params[:id])
-    respond_with(@website, @resource)
+    respond_with(@resource)
   end
 
   # POST /resources
@@ -35,7 +35,7 @@ class ResourcesController < ApplicationController
     @resource = Resource.new(params[:resource])
     @resource.website = @website
     @resource.save
-    respond_with(@website, @resource)
+    respond_with(@resource)
   end
 
   # PUT /resources/1
@@ -43,7 +43,7 @@ class ResourcesController < ApplicationController
   def update
     @resource = Resource.find(params[:id])
     @resource.update_attributes(params[:resource])
-    respond_with(@website, @resource)
+    respond_with(@resource)
   end
 
   # DELETE /resources/1
@@ -51,7 +51,7 @@ class ResourcesController < ApplicationController
   def destroy
     @resource = Resource.find(params[:id])
     @resource.destroy
-    respond_with(@website, @resource)
+    respond_with(@resource)
   end
   
   # GET /preview
@@ -75,10 +75,6 @@ private
     return redirect_to websites_path if @website.nil?
   end
 
-  def type_key
-    asset_type.model_name.singular_route_key.to_sym
-  end
-  
   def asset_type
     @asset_type ||= params[:_type].constantize
   end
